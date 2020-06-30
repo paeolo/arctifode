@@ -1,0 +1,11 @@
+{
+  "header": {
+    "title": "Mon site",
+    "description": "Ma description"
+  },
+  "navbar": {
+    "signin": "Connexion",
+    "signout": "Déconnexion",
+    "register": "Inscription"
+  }
+}

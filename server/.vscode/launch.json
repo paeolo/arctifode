@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "request": "launch",
+      "name": "Launch",
+      "program": "${workspaceFolder}/index.js"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach",
+      "port": 9229,
+      "restart": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Codegen",
+      "program": "${workspaceFolder}/dist/codegen/index.js"
+    },
+  ]
+}

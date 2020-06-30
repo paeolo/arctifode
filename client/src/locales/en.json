@@ -1,0 +1,11 @@
+{
+  "header": {
+    "title": "My website",
+    "description": "My description"
+  },
+  "navbar": {
+    "signin": "Sign in",
+    "signout": "Sign out",
+    "register": "Register"
+  }
+}

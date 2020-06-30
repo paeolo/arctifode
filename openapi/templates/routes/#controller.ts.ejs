@@ -1,0 +1,98 @@
+<%
+const getType = value => {
+  if ('type' in value)
+    return value.type;
+  else if ('title' in value)
+    return 'schema.' + value.title;
+  else
+    return 'any';
+}
+
+const getSchemaType = schema => {
+  if ('items' in schema)
+    return getType(schema.items).concat('[]');
+  else
+    return getType(schema);
+}
+
+const getContentType = content => {
+  let contentType = Object.keys(content)[0];
+  let returnType = 'any';
+  if (contentType === 'application/json') {
+    let schema = content['application/json'].schema;
+    returnType = getSchemaType(schema);
+  }
+  return [contentType, returnType];
+}
+-%>
+/*
+** OpenAPI Client - CONTROLLER: <%- controllerName %>
+*/
+
+import request from 'superagent';
+import { OpenAPI, Request } from '..';
+import * as schema from '../schemas';
+
+export namespace <%- controllerName %> {
+<%
+for (let route of routes) {
+  let operation = route.operation;
+  let response = Object.values(operation.responses)[0];
+
+  let returnType = 'void';
+  let contentType = undefined;
+  let parameters = [];
+  let queryParameters = [];
+
+  if ('content' in response) {
+    [contentType, returnType] = getContentType(response.content);
+  }
+
+  if ('requestBody' in operation) {
+    if ('content' in operation.requestBody) {
+      let [, type] =  getContentType(operation.requestBody.content)
+      parameters.push('value: ' + type);
+    }
+    else {
+      parameters.push('value: any');
+    }
+  }
+
+  if ('parameters' in operation) {
+    for (let parameter of operation.parameters) {
+      let required = parameter.required ? '' : '?';
+      if ('content' in parameter) {
+        let [, type] = getContentType(parameter.content);
+        parameters.push(parameter.name + required + ': ' + type);
+      }
+      else if ('schema' in parameter) {
+        let type = getSchemaType(parameter.schema);
+        parameters.push(parameter.name + required + ': ' + type);
+      }
+      if (parameter.in === 'query')
+        queryParameters.push(parameter.name);
+    }
+  }
+
+  let path = route.path
+    .replace(/{/g, '\' + ')
+    .replace(/}/g, ' + \'')
+  path = `'${path}'`.replace(/ \+ ''$/, '');
+-%>
+
+  export function <%- route.operationName %>(<%- parameters.join(', ') %>): Request<<%- returnType %>> {
+    return request
+      .<%- route.operationType %>(OpenAPI.options.url + <%- path %>)
+      .withCredentials()
+    <%_ if ('requestBody' in operation) { _%>
+      .send(value)
+    <%_ } if (contentType !== undefined) { _%>
+      .set('Accept', '<%- contentType %>')
+    <%_ } for (let queryParameter of queryParameters) { _%>
+      .query({<%- queryParameter %> : <%- queryParameter %>})
+    <%_ } _%>
+  }
+<%
+}
+-%>
+}
