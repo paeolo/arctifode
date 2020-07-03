@@ -16,36 +16,36 @@ export type LinkProps = {
   circle?: boolean;
 } & ComponentProps<'a'>;
 
-export const Link: React.FC<LinkProps> = props => {
+export const Link: React.FC<LinkProps> = React.forwardRef(
+  (props, ref) => {
+    const {
+      className,
+      size,
+      state,
+      block,
+      action,
+      circle,
+      ...rest
+    } = props;
 
-  const {
-    className,
-    size,
-    state,
-    block,
-    action,
-    circle,
-    ...rest
-  } = props;
-
-  return (
-    <a
-      className={classnames(
-        'btn', 'btn-link',
-        {
-          [`${state}`]: state,
-          'btn-block': block,
-          'btn-sm': size === "small",
-          'btn-lg': size === "large",
-          'btn-action': action || circle,
-          's-circle': circle,
-        },
-        className
-      )}
-      {...rest}
-    />
-  );
-}
+    return (
+      <a
+        className={classnames(
+          'btn', 'btn-link',
+          {
+            [`${state}`]: state,
+            'btn-block': block,
+            'btn-sm': size === "small",
+            'btn-lg': size === "large",
+            'btn-action': action || circle,
+            's-circle': circle,
+          },
+          className
+        )}
+        {...rest}
+      />
+    );
+  });
 
 Link.propTypes = {
   size: PropTypes.oneOf(LinkTypes["sizes"]),

@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Register.module.scss';
 
 import { RegisterForm } from './RegisterForm';
+import { Grid } from '@components/Core';
 import { Header, Footer } from '@components/Layout';
 
 export const RegisterPage = () => {
@@ -9,9 +9,9 @@ export const RegisterPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <div className={styles.container}>
+      <Grid maxWidth="lg">
         <RegisterForm />
-      </div>
+      </Grid>
       <Footer />
     </React.Fragment >
   );

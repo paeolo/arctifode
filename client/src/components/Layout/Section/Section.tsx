@@ -9,18 +9,20 @@ interface SectionProps {
 
 export const Section: React.FC<SectionProps> = props => {
   return (
-    <Row >
-      <Column size="4">
-        <div>
-          <h4>{props.title}</h4>
-          <h6 className={styles.subtitle}>{props.subtitle}</h6>
-        </div>
-      </Column>
-      <Column size="8">
-        <div>
-          {props.children}
-        </div>
-      </Column>
-    </Row>
+    <div className="container">
+      <Row >
+        <Column size="4" hide="sm">
+          <div>
+            <h4>{props.title}</h4>
+            <h6 className={styles.subtitle}>{props.subtitle}</h6>
+          </div>
+        </Column>
+        <Column size="8" sizes={{ sm: "12" }}>
+          <div>
+            {props.children}
+          </div>
+        </Column>
+      </Row>
+    </div>
   );
 }

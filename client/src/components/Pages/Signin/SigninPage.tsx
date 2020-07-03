@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Signin.module.scss';
 
 import { SigninForm } from './SigninForm';
+import { Grid } from '@components/Core';
 import { Header, Footer } from '@components/Layout';
 
 export const SigninPage = () => {
@@ -9,9 +9,9 @@ export const SigninPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <div className={styles.container}>
+      <Grid maxWidth="lg">
         <SigninForm />
-      </div>
+      </Grid>
       <Footer />
     </React.Fragment >
   );

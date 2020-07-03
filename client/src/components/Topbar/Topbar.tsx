@@ -17,7 +17,9 @@ export const Topbar = () => {
   return useObserver(() =>
     <Navbar className={styles.topbar}>
       <Navbar.Section>
-        <Navbar.Brand>Artifactory</Navbar.Brand>
+        <Navbar.Brand href='/'>
+          {t('header.title')}
+        </Navbar.Brand>
       </Navbar.Section>
       <Navbar.Section>
         {!userStore.isLogged &&

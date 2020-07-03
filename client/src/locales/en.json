@@ -1,7 +1,7 @@
 {
   "header": {
-    "title": "My website",
-    "description": "My description"
+    "title": "Arctifode",
+    "description": "A lightweight artifactory. Make continous delivery easier."
   },
   "navbar": {
     "signin": "Sign in",

@@ -1,7 +1,7 @@
 {
   "header": {
-    "title": "Mon site",
-    "description": "Ma description"
+    "title": "Arctifode",
+    "description": "Une bibliothèque d'artifact légère. Simplifiez la livraison continue."
   },
   "navbar": {
     "signin": "Connexion",
