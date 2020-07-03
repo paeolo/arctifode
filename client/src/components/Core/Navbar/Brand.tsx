@@ -1,16 +1,25 @@
-import classNames from "classnames";
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-export type NavbarBrandProps = {
+export type BrandProps = {
   className?: string;
-}
+  center?: boolean;
+  href?: string;
+};
 
-export const NavbarBrand: React.FC<NavbarBrandProps> = props => {
+export const Brand: React.FC<BrandProps> = props => {
+
   return (
-    <div className={classNames("navbar-brand", props.className)}>
+    <a
+      href={props.href || '#'}
+      className={classnames('navbar-brand', props.className)}>
       {props.children}
-    </div>
+    </a>
   );
 }
 
-NavbarBrand.displayName = "Navbar.Brand";
+Brand.propTypes = {
+  className: PropTypes.string,
+  href: PropTypes.string
+};

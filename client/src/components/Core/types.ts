@@ -1,25 +1,19 @@
 export const DefaultsType = {
   colors: [
     "primary",
-    "success",
-    "info",
-    "warning",
-    "danger",
-    "light",
+    "secondary",
     "dark",
-    "white",
-    "black",
-    "link",
+    "gray",
+    "light",
+    "success",
+    "warning",
+    "error"
   ] as const,
-  shades: [
-    "black-bis",
-    "black-ter",
-    "grey-darker",
-    "grey-dark",
-    "grey",
-    "grey-light",
-    "grey-lighter",
-    "white-ter",
-    "white-bis",
+  viewports: [
+    "xs",
+    "sm",
+    "md",
+    "lg",
+    "xl",
   ] as const,
 };

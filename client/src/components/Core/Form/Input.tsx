@@ -1,12 +1,8 @@
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import React, { ComponentProps } from "react";
-
-import { DefaultsType } from "../types";
+import React, { ComponentProps } from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 export const InputTypes = {
-  sizes: ["small", "medium", "large"] as const,
-  states: ["focused", "hovered"] as const,
   types: [
     "text",
     "email",
@@ -21,46 +17,30 @@ export const InputTypes = {
 };
 
 export type InputProps = {
-  color?: typeof DefaultsType["colors"][number];
-  readOnly?: React.InputHTMLAttributes<HTMLInputElement>["readOnly"];
-  rounded?: boolean;
-  size?: typeof InputTypes["sizes"][number];
-  state?: typeof InputTypes["states"][number];
-  isStatic?: boolean;
   type?: typeof InputTypes["types"][number];
   className?: string
 } & Omit<ComponentProps<'input'>, 'size'>;
 
+
 export const Input: React.FC<InputProps> = props => {
 
-  const { className, color, rounded, size, isStatic, state, readOnly, ...rest } = props;
-  const isReadOnly = readOnly === true || isStatic === true;
+  const {
+    type,
+    className,
+    ...rest
+  } = props;
 
   return (
     <input
-      className={classNames(
-        "input", props.className,
-        {
-          [`is-${color}`]: color,
-          "is-rounded": rounded,
-          [`is-${size}`]: size,
-          "is-static": isStatic,
-          [`is-${state}`]: state,
-        },
-      )}
-      readOnly={isReadOnly}
+      type={type}
+      className={classnames('form-input', className)}
       {...rest}
     />
   );
 }
 
-Input.displayName = "Input";
 Input.propTypes = {
-  color: PropTypes.oneOf(DefaultsType["colors"]),
-  readOnly: PropTypes.bool,
-  rounded: PropTypes.bool,
-  size: PropTypes.oneOf(InputTypes["sizes"]),
-  state: PropTypes.oneOf(InputTypes["states"]),
-  isStatic: PropTypes.bool,
+  className: PropTypes.string,
   type: PropTypes.oneOf(InputTypes["types"]),
+  id: PropTypes.string
 };

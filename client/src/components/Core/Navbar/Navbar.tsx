@@ -1,36 +1,32 @@
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import { Section } from './Section';
 
-import { NavbarBrand } from "./Brand";
-import { NavbarBurger } from "./Burger";
-import { NavbarContainer, NavbarTypes } from "./Container";
-import { NavbarDivider } from "./Divider";
-import { NavbarDropdown } from "./Dropdown";
-import { NavbarItem } from "./Item";
-import { NavbarLink } from "./Link";
-import { NavbarMenu } from "./Menu";
-import { NavbarSegment } from "./Segment";
-import { DefaultsType } from "../types";
+import { Brand } from './Brand';
+
+export type NavbarProps = {
+  className?: string;
+};
+
+export const NavbarFC: React.FC<NavbarProps> = props => {
+
+  return (
+    <header className={classnames('navbar', props.className)}>
+      {props.children}
+    </header>
+  );
+}
+
+NavbarFC.propTypes = {
+  className: PropTypes.string
+}
 
 export const Navbar = Object.assign(
-  NavbarContainer,
+  NavbarFC,
   {
-    Brand: NavbarBrand,
-    Burger: NavbarBurger,
-    Container: NavbarContainer,
-    Divider: NavbarDivider,
-    Dropdown: NavbarDropdown,
-    Item: NavbarItem,
-    Link: NavbarLink,
-    Menu: NavbarMenu,
-    Segment: NavbarSegment,
-  },
+    displayName: 'Navbar',
+    Section: Section,
+    Brand: Brand
+  }
 );
-
-Navbar.displayName = "Navbar";
-Navbar.propTypes = {
-  active: PropTypes.bool,
-  color: PropTypes.oneOf(DefaultsType["colors"]),
-  fixed: PropTypes.oneOf(NavbarTypes["fixedAlignments"]),
-  managed: PropTypes.bool,
-  transparent: PropTypes.bool,
-};

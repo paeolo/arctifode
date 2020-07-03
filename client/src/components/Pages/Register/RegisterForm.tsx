@@ -5,12 +5,8 @@ import { useObserver } from "mobx-react-lite";
 import { UserController } from "@openapi/.";
 
 import {
-  Field,
-  Label,
-  Control,
-  Input,
-  Heading,
-  Help,
+  Form,
+  Input
 } from "@components/Core/Form";
 import {
   Section,
@@ -52,37 +48,29 @@ export const RegisterForm = () => {
     <Section
       title='Register'
       subtitle='Fill the following form...'>
-      <form className="box" onSubmit={formik.handleSubmit} >
-        <Heading>Register</Heading>
-        <Field>
-          <Label>Username</Label>
-          <Control>
-            <Input
-              id='username'
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              type="text"
-              placeholder="john.smith" />
-          </Control>
-        </Field>
-        <Field>
-          <Label>Password</Label>
-          <Control>
-            <Input
-              id='password'
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              type="password"
-              placeholder="********" />
-          </Control>
-        </Field>
+      <Form onSubmit={formik.handleSubmit} >
+        <h4>Register</h4>
+        <Form.Group>
+          <Form.Label>Username</Form.Label>
+          <Input
+            id='username'
+            value={formik.values.username}
+            onChange={formik.handleChange}
+            type="text"
+            placeholder="john.smith" />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Input
+            id='password'
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            type="password"
+            placeholder="********" />
+        </Form.Group>
         <Divider />
-        {
-          error &&
-          <Help color="danger">An error occured. Try again</Help>
-        }
         <Submit />
-      </form >
+      </Form >
     </Section >
   )
 }

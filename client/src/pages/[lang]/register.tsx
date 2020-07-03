@@ -4,15 +4,14 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { RegisterPage } from "@components/Pages";
 import { WithLocale, getLocaleProps, getLocalePaths } from "@components/I18n";
 import { HtmlHead } from "@components/Core";
-import { WithNavbar } from "@components/Navbar";
+import { Topbar } from "@components/Topbar";
 
 const Index = () => {
   return (
     <React.Fragment>
       <HtmlHead />
-      <WithNavbar>
-        <RegisterPage />
-      </WithNavbar>
+      <Topbar />
+      <RegisterPage />
     </React.Fragment>
   );
 }

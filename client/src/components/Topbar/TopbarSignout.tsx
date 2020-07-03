@@ -2,9 +2,9 @@ import { useRouter } from "next/router";
 import { UserController } from "@openapi/.";
 
 import { useTranslate } from "../../hooks";
-import { Navbar } from "@components/Core";
+import { Button } from "@components/Core";
 
-export const NavbarSignout = () => {
+export const TopbarSignout = () => {
 
   const router = useRouter();
   const { t } = useTranslate();
@@ -15,9 +15,9 @@ export const NavbarSignout = () => {
   }
 
   return (
-    <Navbar.Item
+    <Button.Link
       onClick={onClick}>
       {t('navbar.signout')}
-    </Navbar.Item>
+    </Button.Link>
   );
 }

@@ -1,87 +1,73 @@
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import React, { ComponentProps } from "react";
+import React, { ComponentProps } from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-import { ButtonGroup } from "./ButtonGroup";
-import { DefaultsType } from '../types';
+import { Link } from './Link';
+import { Group } from './Group';
 
 export const ButtonTypes = {
-  sizes: ["small", "normal", "medium", "large"] as const,
-  states: ["hovered", "focused", "active", "loading"] as const,
+  sizes: ["small", "normal", "large"] as const,
+  states: ["active", "disabled", "loading"] as const,
+  colors: ["primary", "link", "success", "error"] as const,
 };
 
 export type ButtonProps = {
-  color?: typeof DefaultsType["colors"][number];
-  fullwidth?: boolean;
-  inverted?: boolean;
-  outlined?: boolean;
-  rounded?: boolean;
-  selected?: boolean;
+  className?: string;
   size?: typeof ButtonTypes["sizes"][number];
   state?: typeof ButtonTypes["states"][number];
-  static?: boolean;
-  text?: boolean;
-  className?: string;
-  onClick?: () => void
+  color?: typeof ButtonTypes["colors"][number];
+  block?: boolean;
+  action?: boolean;
+  circle?: boolean;
 } & ComponentProps<'button'>;
 
-export const ButtonComponent: React.FC<ButtonProps> = props => {
+const ButtonFC: React.FC<ButtonProps> = props => {
 
   const {
     className,
-    color,
-    fullwidth,
-    inverted,
-    outlined,
-    rounded,
-    selected,
     size,
     state,
-    static: isStatic,
-    text,
-    onClick,
+    color,
+    block,
+    action,
+    circle,
     ...rest
   } = props;
 
   return (
     <button
-      className={classNames("button", className,
+      className={classnames(
+        'btn',
         {
-          [`is-${color}`]: color,
-          "is-fullwidth": fullwidth,
-          "is-inverted": inverted,
-          "is-outlined": outlined,
-          "is-rounded": rounded,
-          "is-selected": selected,
-          [`is-${size}`]: size,
-          [`is-${state}`]: state,
-          "is-static": isStatic,
-          "is-text": text,
+          [`${state}`]: state,
+          [`btn-${color}`]: color,
+          'btn-block': block,
+          'btn-sm': size === "small",
+          'btn-lg': size === "large",
+          'btn-action': action || circle,
+          's-circle': circle,
         },
+        className
       )}
-      onClick={onClick}
       {...rest}
     />
   );
 }
 
-export const Button = Object.assign(
-  ButtonComponent,
-  { Group: ButtonGroup },
-);
-
-const propTypes = {
-  color: PropTypes.oneOf(DefaultsType["colors"]),
-  fullwidth: PropTypes.bool,
-  inverted: PropTypes.bool,
-  outlined: PropTypes.bool,
-  rounded: PropTypes.bool,
-  selected: PropTypes.bool,
+ButtonFC.propTypes = {
   size: PropTypes.oneOf(ButtonTypes["sizes"]),
   state: PropTypes.oneOf(ButtonTypes["states"]),
-  static: PropTypes.bool,
-  text: PropTypes.bool,
+  color: PropTypes.oneOf(ButtonTypes["colors"]),
+  block: PropTypes.bool,
+  action: PropTypes.bool,
+  circle: PropTypes.bool,
 };
 
-Button.displayName = "Button";
-Button.propTypes = propTypes;
+export const Button = Object.assign(
+  ButtonFC,
+  {
+    displayName: 'Button',
+    Link: Link,
+    Group: Group
+  }
+);

@@ -5,13 +5,9 @@ import { useObserver } from "mobx-react-lite";
 import { UserController } from "@openapi/.";
 
 import {
-  Field,
-  Label,
-  Control,
-  Input,
-  Heading,
-  Help,
-  Checkbox,
+  Form,
+  CheckBox,
+  Input
 } from "@components/Core/Form";
 import {
   Section,
@@ -50,48 +46,38 @@ export const SigninForm = () => {
     <Section
       title='Sign in'
       subtitle='Provide your credentials...'>
-      <form className="box" onSubmit={formik.handleSubmit} >
-        <Heading>Sign in</Heading>
-        <Field>
-          <Label>Username</Label>
-          <Control>
-            <Input
-              id='username'
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              type="text"
-              placeholder="john.smith" />
-          </Control>
-        </Field>
-        <Field>
-          <Label>Password</Label>
-          <Control>
-            <Input
-              id='password'
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              type="password"
-              placeholder="********" />
-          </Control>
-        </Field>
-        <Field>
-          <Control>
-            <Label>
-              <Checkbox
-                id='remember'
-                checked={formik.values.remember}
-                onChange={formik.handleChange}
-              /> Remember me
-            </Label>
-          </Control>
-        </Field>
+      <Form onSubmit={formik.handleSubmit} >
+        <h4>Sign in</h4>
+        <Form.Group>
+          <Form.Label>Username</Form.Label>
+          <Input
+            id='username'
+            value={formik.values.username}
+            onChange={formik.handleChange}
+            type="text"
+            placeholder="john.smith" />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Input
+            id='password'
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            type="password"
+            placeholder="********" />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Password</Form.Label>
+          <CheckBox
+            id='remember'
+            label='Remember me'
+            checked={formik.values.remember}
+            onChange={formik.handleChange}
+          />
+        </Form.Group>
         <Divider />
-        {
-          error &&
-          <Help color="danger">An error occured. Try again</Help>
-        }
         <Submit />
-      </form >
+      </Form >
     </Section >
   )
 }

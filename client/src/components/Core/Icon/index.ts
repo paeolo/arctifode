@@ -1,2 +1,1 @@
-export * from './Icon';
-export * from './BigWhiteIcon';
+export { Icon } from './Icon'

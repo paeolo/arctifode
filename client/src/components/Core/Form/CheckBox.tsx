@@ -2,12 +2,12 @@ import React, { ComponentProps } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-export type RadioProps = {
+export type CheckBoxProps = {
   label: string;
   className?: string;
 } & ComponentProps<'input'>
 
-export const Radio: React.FC<RadioProps> = props => {
+export const CheckBox: React.FC<CheckBoxProps> = props => {
 
   const {
     label,
@@ -16,14 +16,14 @@ export const Radio: React.FC<RadioProps> = props => {
   } = props;
 
   return (
-    <label className={classnames('form-radio', className)}>
-      <input type="radio" {...rest} />
+    <label className={classnames('form-checkbox', className)}>
+      <input type="checkbox" {...rest} />
       <i className="form-icon" /> {label}
     </label>
   );
 }
 
-Radio.propTypes = {
+CheckBox.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string
 };

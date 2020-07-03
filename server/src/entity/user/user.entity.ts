@@ -8,11 +8,14 @@ import {
   Unique,
   OneToMany
 } from "typeorm";
+import { MinLength } from 'class-validator';
 
 import { UserRole } from '../../components/jwt';
-import { Token, UserProfile, UserCredentials } from '../user';
 import { required, enumProperty } from '../../utils';
-import { MinLength } from 'class-validator';
+
+import { UserCredentials } from './user-credentials.entity';
+import { UserProfile } from './user-profile.entity';
+import { Token } from './token.entity';
 
 @model()
 @Entity()
@@ -33,15 +36,15 @@ export class User {
   @enumProperty({ title: 'UserRole', values: UserRole, required: true })
   role: UserRole
 
-  @OneToOne(type => UserCredentials, { cascade: ['insert'] })
+  @OneToOne(() => UserCredentials, { cascade: ['insert'] })
   @JoinColumn()
   credentials: UserCredentials;
 
-  @OneToOne(type => UserProfile, { cascade: true })
+  @OneToOne(() => UserProfile, { cascade: true })
   @JoinColumn()
   @property()
   profile: UserProfile;
 
-  @OneToMany(type => Token, token => token.user)
+  @OneToMany(() => Token, token => token.user)
   tokens: Token[];
 }
