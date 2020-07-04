@@ -6,10 +6,10 @@
 @import "~@fortawesome/fontawesome-free/scss/solid";
 
 @import './variables.scss';
-@import '~spectre.css/src/mixins';
+@import './spectre.css/mixins';
 
-@import '~spectre.css/src/normalize';
-@import '~spectre.css/src/base';
-@import '~spectre.css/src/typography';
-@import '~spectre.css/src/animations';
-@import '~spectre.css/src/utilities';
+@import './spectre.css/normalize';
+@import './spectre.css/base';
+@import './spectre.css/typography';
+@import './spectre.css/animations';
+@import './spectre.css/utilities';
