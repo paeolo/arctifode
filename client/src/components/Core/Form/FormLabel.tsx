@@ -1,5 +1,7 @@
 import React, { ComponentProps } from "react";
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Form.module.scss';
 
 export type LabelProps = {
   className?: string;
@@ -16,7 +18,7 @@ export const FormLabel: React.FC<LabelProps> = props => {
 
   return (
     <label
-      className={classnames('form-label', className)}
+      className={classNames.bind(styles)('form-label', className)}
       htmlFor={id}
       {...rest}
     />

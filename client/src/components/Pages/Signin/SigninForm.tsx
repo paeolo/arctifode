@@ -67,7 +67,6 @@ export const SigninForm = () => {
             placeholder="********" />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Password</Form.Label>
           <CheckBox
             id='remember'
             label='Remember me'

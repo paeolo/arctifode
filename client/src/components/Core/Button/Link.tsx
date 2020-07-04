@@ -1,6 +1,8 @@
 import React, { ComponentProps } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Button.module.scss';
 
 export const LinkTypes = {
   sizes: ["small", "normal", "large"] as const,
@@ -30,7 +32,7 @@ export const Link: React.FC<LinkProps> = React.forwardRef(
 
     return (
       <a
-        className={classnames(
+        className={classNames.bind(styles)(
           'btn', 'btn-link',
           {
             [`${state}`]: state,

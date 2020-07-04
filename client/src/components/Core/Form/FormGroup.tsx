@@ -1,5 +1,7 @@
 import React from "react";
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Form.module.scss';
 
 export type GroupProps = {
   className?: string;
@@ -18,7 +20,7 @@ export const FormGroup: React.FC<GroupProps> = props => {
 
   return (
     <div
-      className={classnames(
+      className={classNames.bind(styles)(
         'form-group',
         {
           'has-success': success,

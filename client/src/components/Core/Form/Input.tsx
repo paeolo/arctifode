@@ -1,6 +1,8 @@
 import React, { ComponentProps } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Form.module.scss';
 
 export const InputTypes = {
   types: [
@@ -33,7 +35,7 @@ export const Input: React.FC<InputProps> = props => {
   return (
     <input
       type={type}
-      className={classnames('form-input', className)}
+      className={classNames.bind(styles)('form-input', className)}
       {...rest}
     />
   );

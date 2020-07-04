@@ -1,6 +1,6 @@
 import styles from './Section.module.scss';
 
-import { Column, Row } from '@components/Core';
+import { Grid, Column, Row } from '@components/Core';
 
 interface SectionProps {
   title: string;
@@ -9,7 +9,7 @@ interface SectionProps {
 
 export const Section: React.FC<SectionProps> = props => {
   return (
-    <div className="container">
+    <Grid>
       <Row >
         <Column size="4" hide="sm">
           <div>
@@ -23,6 +23,6 @@ export const Section: React.FC<SectionProps> = props => {
           </div>
         </Column>
       </Row>
-    </div>
+    </Grid>
   );
 }

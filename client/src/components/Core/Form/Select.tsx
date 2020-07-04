@@ -1,5 +1,7 @@
 import React, { ComponentProps } from "react";
-import classNames from "classnames";
+
+import classNames from 'classnames/bind';
+import styles from './Form.module.scss';
 
 import { SelectOption } from "./SelectOption";
 
@@ -13,7 +15,7 @@ const SelectFC: React.FC<SelectProps> = props => {
 
   return (
     <select
-      className={classNames("form-input", className)}
+      className={classNames.bind(styles)("form-input", className)}
       {...rest}
     />
   );

@@ -1,5 +1,7 @@
 import React, { ComponentProps } from "react";
-import classNames from "classnames";
+
+import classNames from 'classnames/bind';
+import styles from './Form.module.scss';
 
 export type TextAreaProps = {
   className?: string;
@@ -11,7 +13,7 @@ export const TextArea: React.FC<TextAreaProps> = props => {
 
   return (
     <textarea
-      className={classNames("form-input", className)}
+      className={classNames.bind(styles)("form-input", className)}
       {...rest}
     />
   );

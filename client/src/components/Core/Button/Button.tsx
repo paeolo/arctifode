@@ -1,6 +1,8 @@
 import React, { ComponentProps } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Button.module.scss';
 
 import { Link } from './Link';
 import { Group } from './Group';
@@ -36,7 +38,7 @@ const ButtonFC: React.FC<ButtonProps> = props => {
 
   return (
     <button
-      className={classnames(
+      className={classNames.bind(styles)(
         'btn',
         {
           [`${state}`]: state,

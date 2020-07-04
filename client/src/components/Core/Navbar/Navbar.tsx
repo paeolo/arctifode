@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { Section } from './Section';
 
+import classNames from 'classnames/bind';
+import styles from './Navbar.module.scss';
+
+import { Section } from './Section';
 import { Brand } from './Brand';
 
 export type NavbarProps = {
@@ -12,7 +14,7 @@ export type NavbarProps = {
 export const NavbarFC: React.FC<NavbarProps> = props => {
 
   return (
-    <header className={classnames('navbar', props.className)}>
+    <header className={classNames.bind(styles)('navbar', props.className)}>
       {props.children}
     </header>
   );

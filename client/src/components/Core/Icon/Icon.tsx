@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Icon.module.scss';
 
 export const IconTypes = {
   sizes: ["normal", "medium", "large", "huge"] as const,
@@ -19,7 +21,7 @@ export const Icon: React.FC<IconProps> = props => {
     ...rest
   } = props;
 
-  return <i className={classnames(
+  return <i className={classNames.bind(styles)(
     'icon',
     {
       'icon-2x': props.size === "medium",

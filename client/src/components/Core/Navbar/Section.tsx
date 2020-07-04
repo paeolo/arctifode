@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Navbar.module.scss';
 
 export type SectionProps = {
   className?: string;
@@ -10,7 +12,7 @@ export type SectionProps = {
 export const Section: React.FC<SectionProps> = props => {
 
   return (
-    <section className={classnames(
+    <section className={classNames.bind(styles)(
       {
         'navbar-section': !props.center,
         'navbar-center': props.center

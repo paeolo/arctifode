@@ -1,5 +1,7 @@
 import React, { ComponentProps } from "react";
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Form.module.scss';
 
 import { FormGroup } from "./FormGroup";
 import { FormLabel } from "./FormLabel";
@@ -18,7 +20,7 @@ const FormFC: React.FC<FromProps> = props => {
 
   return (
     <form
-      className={classnames(
+      className={classNames.bind(styles)(
         {
           'form-horizontal': horizontal
         },

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Grid.module.scss';
 
 import { DefaultsType } from '../types';
 
@@ -29,7 +31,7 @@ export const Column: React.FC<ColumnProps> = props => {
     sizes = Object.entries(props.sizes).map(([key, value]) => `col-${key}-${value}`);
 
   return (
-    <div className={classnames(
+    <div className={classNames.bind(styles)(
       'column',
       {
         [`col-${props.size}`]: props.size,

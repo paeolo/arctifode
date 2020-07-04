@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Grid.module.scss';
 
 import { DefaultsType } from '../types';
 
@@ -18,7 +20,7 @@ export type GridProps = {
 export const Grid: React.FC<GridProps> = props => {
 
   return (
-    <div className={classnames(
+    <div className={classNames.bind(styles)(
       'container',
       {
         [`grid-${props.maxWidth}`]: props.maxWidth,

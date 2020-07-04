@@ -1,6 +1,8 @@
 import React, { ComponentProps } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+
+import classNames from 'classnames/bind';
+import styles from './Form.module.scss';
 
 export type CheckBoxProps = {
   label: string;
@@ -16,9 +18,9 @@ export const CheckBox: React.FC<CheckBoxProps> = props => {
   } = props;
 
   return (
-    <label className={classnames('form-checkbox', className)}>
+    <label className={classNames.bind(styles)('form-checkbox', className)}>
       <input type="checkbox" {...rest} />
-      <i className="form-icon" /> {label}
+      <i className={classNames.bind(styles)('form-icon')} /> {label}
     </label>
   );
 }
