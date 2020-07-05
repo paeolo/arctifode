@@ -7,5 +7,24 @@
     "signin": "Sign in",
     "signout": "Sign out",
     "register": "Register"
+  },
+  "signin": {
+    "title": "Sign in",
+    "description": "Provide your credentials...",
+    "username": "Username",
+    "password": "Password",
+    "remember": "Remember me"
+  },
+  "register": {
+    "title": "Register",
+    "description": "Fill the following form...",
+    "username": "Username",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "password": "Password"
+  },
+  "common": {
+    "submit": "Submit",
+    "error": "An error has occured"
   }
 }

@@ -12,6 +12,7 @@ export const MenuDropdownTypes = {
 
 export type MenuDropdownProps = {
   label: string;
+  icon?: string;
   size?: typeof MenuDropdownTypes["sizes"][number];
   state?: typeof MenuDropdownTypes["states"][number];
   block?: boolean;
@@ -19,6 +20,10 @@ export type MenuDropdownProps = {
 };
 
 export const MenuDropdown: React.FC<MenuDropdownProps> = props => {
+
+  const icon = props.icon
+    ? props.icon
+    : 'fas fa-caret-down';
 
   return (
     <div className={classNames.bind(styles)(
@@ -38,7 +43,7 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = props => {
           }
         )}
         tabIndex={0}>
-        {props.label} <Icon icon='fas fa-caret-down' />
+        {props.label} <Icon icon={icon} />
       </a>
       {props.children}
     </div>

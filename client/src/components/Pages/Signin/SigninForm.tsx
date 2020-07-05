@@ -6,20 +6,21 @@ import { UserController } from "@openapi/.";
 
 import {
   Form,
-  CheckBox,
-  Input
+  Input,
+  Switch
 } from "@components/Core/Form";
 import {
   Section,
   Divider,
-  Submit
+  Submit,
+  Error
 } from "@components/Layout";
 import { useTranslate } from "../../../hooks";
 
 export const SigninForm = () => {
 
   const router = useRouter();
-  const { locale } = useTranslate();
+  const { locale, t } = useTranslate();
   const [error, setError] = useState(false);
 
   const formik = useFormik({
@@ -44,13 +45,13 @@ export const SigninForm = () => {
 
   return useObserver(() =>
     <Section
-      title='Sign in'
-      subtitle='Provide your credentials...'>
+      title={t('signin.title')}
+      subtitle={t('signin.description')}>
       <Form onSubmit={formik.handleSubmit} >
-        <h4>Sign in</h4>
+        <h4>{t('signin.title')}</h4>
         <Form.Group>
           <Form.Label id='username'>
-            Username
+            {t('signin.username')}
           </Form.Label>
           <Input
             id='username'
@@ -61,7 +62,7 @@ export const SigninForm = () => {
         </Form.Group>
         <Form.Group>
           <Form.Label id='password'>
-            Password
+            {t('signin.password')}
           </Form.Label>
           <Input
             id='password'
@@ -71,14 +72,15 @@ export const SigninForm = () => {
             placeholder="********" />
         </Form.Group>
         <Form.Group>
-          <CheckBox
+          <Switch
             id='remember'
-            label='Remember me'
+            label={t('signin.remember')}
             checked={formik.values.remember}
             onChange={formik.handleChange}
           />
         </Form.Group>
         <Divider />
+        {error && <Error setError={setError} />}
         <Submit />
       </Form >
     </Section >

@@ -20,6 +20,7 @@ export const InputTypes = {
 
 export type InputProps = {
   type?: typeof InputTypes["types"][number];
+  inline?: boolean;
 } & Omit<ComponentProps<'input'>, 'className'>;
 
 
@@ -27,13 +28,19 @@ export const Input: React.FC<InputProps> = props => {
 
   const {
     type,
+    inline,
     ...rest
   } = props;
 
   return (
     <input
       type={type}
-      className={classNames.bind(styles)('form-input')}
+      className={classNames.bind(styles)(
+        'form-input',
+        {
+          'form-inline': inline
+        }
+      )}
       {...rest}
     />
   );
@@ -41,5 +48,6 @@ export const Input: React.FC<InputProps> = props => {
 
 Input.propTypes = {
   type: PropTypes.oneOf(InputTypes["types"]),
+  inline: PropTypes.bool,
   id: PropTypes.string
 };

@@ -1,0 +1,25 @@
+@import '../../../assets/sass/variables.scss';
+@import '../../../assets/sass/spectre.css/mixins';
+
+@import '../../../assets/sass/spectre.css/toasts';
+
+.custom {
+  margin: 1rem 0;
+}
+
+.fade-in {
+	opacity: 1;
+	animation-name: fade-in;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.5s;
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

@@ -34,7 +34,16 @@ export const Topbar = () => {
           </Link>
         }
         {userStore.isLogged &&
-          <TopbarSignout />
+          <Menu.Dropdown
+            label={userStore.currentUser.username}
+            icon='fas fa-user-circle'
+            right>
+            <Menu>
+              <Menu.Item>
+                <TopbarSignout />
+              </Menu.Item>
+            </Menu>
+          </Menu.Dropdown>
         }
         <Menu.Dropdown label={locale} right>
           <Menu>

@@ -5,3 +5,4 @@ export * from './Icon';
 export * from './Menu';
 export * from './Navbar';
 export * from './HtmlHead';
+export * from './Toast';

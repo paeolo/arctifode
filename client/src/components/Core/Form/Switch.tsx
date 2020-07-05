@@ -4,33 +4,25 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Form.module.scss';
 
-export type RadioProps = {
+export type SwitchProps = {
   label: string;
-  inline?: boolean;
 } & Omit<ComponentProps<'input'>, 'className'>
 
-export const Radio: React.FC<RadioProps> = props => {
+export const Switch: React.FC<SwitchProps> = props => {
 
   const {
     label,
-    inline,
     ...rest
   } = props;
 
   return (
-    <label className={classNames.bind(styles)(
-      'form-radio',
-      {
-        'form-inline': inline
-      }
-    )}>
-      <input type="radio" {...rest} />
+    <label className={classNames.bind(styles)('form-switch')}>
+      <input type="checkbox" {...rest} />
       <i className={classNames.bind(styles)('form-icon')} /> {label}
     </label>
   );
 }
 
-Radio.propTypes = {
-  label: PropTypes.string,
-  inline: PropTypes.bool
+Switch.propTypes = {
+  label: PropTypes.string
 };

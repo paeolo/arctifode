@@ -11,14 +11,15 @@ import {
 import {
   Section,
   Divider,
-  Submit
+  Submit,
+  Error
 } from "@components/Layout";
 import { useTranslate } from "../../../hooks";
 
 export const RegisterForm = () => {
 
   const router = useRouter();
-  const { locale } = useTranslate();
+  const { locale, t } = useTranslate();
   const [error, setError] = useState(false);
 
   const formik = useFormik({
@@ -48,13 +49,13 @@ export const RegisterForm = () => {
 
   return useObserver(() =>
     <Section
-      title='Register'
-      subtitle='Fill the following form...'>
+      title={t('register.title')}
+      subtitle={t('register.description')}>
       <Form onSubmit={formik.handleSubmit} >
-        <h4>Register</h4>
+        <h4>{t('register.title')}</h4>
         <Form.Group>
           <Form.Label id='username'>
-            Username
+            {t('register.username')}
           </Form.Label>
           <Input
             id='username'
@@ -65,7 +66,7 @@ export const RegisterForm = () => {
         </Form.Group>
         <Form.Group>
           <Form.Label id='firstname'>
-            First name
+            {t('register.firstname')}
           </Form.Label>
           <Input
             id='firstname'
@@ -76,7 +77,7 @@ export const RegisterForm = () => {
         </Form.Group>
         <Form.Group>
           <Form.Label id='lastname'>
-            Last name
+            {t('register.lastname')}
           </Form.Label>
           <Input
             id='lastname'
@@ -87,7 +88,7 @@ export const RegisterForm = () => {
         </Form.Group>
         <Form.Group>
           <Form.Label id='password'>
-            Password
+            {t('register.password')}
           </Form.Label>
           <Input
             id='password'
@@ -97,6 +98,7 @@ export const RegisterForm = () => {
             placeholder="********" />
         </Form.Group>
         <Divider />
+        {error && <Error setError={setError} />}
         <Submit />
       </Form >
     </Section >
