@@ -8,13 +8,12 @@ import { FormLabel } from "./FormLabel";
 
 export type FromProps = {
   horizontal?: boolean;
-} & ComponentProps<'form'>;
+} & Omit<ComponentProps<'form'>, 'className'>;
 
 const FormFC: React.FC<FromProps> = props => {
 
   const {
     horizontal,
-    className,
     ...rest
   } = props;
 
@@ -24,7 +23,7 @@ const FormFC: React.FC<FromProps> = props => {
         {
           'form-horizontal': horizontal
         },
-        className)}
+      )}
       {...rest}
     />
   );

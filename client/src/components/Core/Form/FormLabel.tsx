@@ -4,21 +4,19 @@ import classNames from 'classnames/bind';
 import styles from './Form.module.scss';
 
 export type LabelProps = {
-  className?: string;
   id?: string;
-} & ComponentProps<'label'>;
+} & Omit<ComponentProps<'label'>, 'className'>;
 
 export const FormLabel: React.FC<LabelProps> = props => {
 
   const {
-    className,
     id,
     ...rest
   } = props;
 
   return (
     <label
-      className={classNames.bind(styles)('form-label', className)}
+      className={classNames.bind(styles)('form-label')}
       htmlFor={id}
       {...rest}
     />

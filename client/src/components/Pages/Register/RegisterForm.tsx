@@ -24,7 +24,9 @@ export const RegisterForm = () => {
   const formik = useFormik({
     initialValues: {
       username: '',
-      password: ''
+      password: '',
+      firstname: '',
+      lastname: '',
     },
     onSubmit: async values => {
       try {
@@ -51,7 +53,9 @@ export const RegisterForm = () => {
       <Form onSubmit={formik.handleSubmit} >
         <h4>Register</h4>
         <Form.Group>
-          <Form.Label>Username</Form.Label>
+          <Form.Label id='username'>
+            Username
+          </Form.Label>
           <Input
             id='username'
             value={formik.values.username}
@@ -60,7 +64,31 @@ export const RegisterForm = () => {
             placeholder="john.smith" />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Password</Form.Label>
+          <Form.Label id='firstname'>
+            First name
+          </Form.Label>
+          <Input
+            id='firstname'
+            value={formik.values.firstname}
+            onChange={formik.handleChange}
+            type="text"
+            placeholder="John" />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label id='lastname'>
+            Last name
+          </Form.Label>
+          <Input
+            id='lastname'
+            value={formik.values.lastname}
+            onChange={formik.handleChange}
+            type="text"
+            placeholder="Smith" />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label id='password'>
+            Password
+          </Form.Label>
           <Input
             id='password'
             value={formik.values.password}

@@ -49,7 +49,9 @@ export const SigninForm = () => {
       <Form onSubmit={formik.handleSubmit} >
         <h4>Sign in</h4>
         <Form.Group>
-          <Form.Label>Username</Form.Label>
+          <Form.Label id='username'>
+            Username
+          </Form.Label>
           <Input
             id='username'
             value={formik.values.username}
@@ -58,7 +60,9 @@ export const SigninForm = () => {
             placeholder="john.smith" />
         </Form.Group>
         <Form.Group>
-          <Form.Label>Password</Form.Label>
+          <Form.Label id='password'>
+            Password
+          </Form.Label>
           <Input
             id='password'
             value={formik.values.password}

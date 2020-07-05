@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import styles from './Form.module.scss';
 
 export type GroupProps = {
-  className?: string;
   success?: boolean,
   error?: boolean;
 };
@@ -12,7 +11,6 @@ export type GroupProps = {
 export const FormGroup: React.FC<GroupProps> = props => {
 
   const {
-    className,
     success,
     error,
     ...rest
@@ -25,8 +23,8 @@ export const FormGroup: React.FC<GroupProps> = props => {
         {
           'has-success': success,
           'has-error': error
-        },
-        className)}
+        }
+      )}
       {...rest}
     />
   );

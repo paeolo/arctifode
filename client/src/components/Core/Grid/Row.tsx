@@ -5,7 +5,6 @@ import classNames from 'classnames/bind';
 import styles from './Grid.module.scss';
 
 export type RowProps = {
-  className?: string;
   oneline?: boolean;
   gapless?: boolean;
 };
@@ -18,8 +17,7 @@ export const Row: React.FC<RowProps> = props => {
       {
         'col-gapless': props.gapless,
         'col-oneline': props.oneline
-      },
-      props.className
+      }
     )}>
       {props.children}
     </div>
@@ -27,7 +25,6 @@ export const Row: React.FC<RowProps> = props => {
 }
 
 Row.propTypes = {
-  className: PropTypes.string,
   gapless: PropTypes.bool,
   oneline: PropTypes.bool
 };

@@ -6,19 +6,17 @@ import styles from './Form.module.scss';
 
 export type RadioProps = {
   label: string;
-  className?: string;
-} & ComponentProps<'input'>
+} & Omit<ComponentProps<'input'>, 'className'>
 
 export const Radio: React.FC<RadioProps> = props => {
 
   const {
     label,
-    className,
     ...rest
   } = props;
 
   return (
-    <label className={classNames.bind(styles)('form-radio', className)}>
+    <label className={classNames.bind(styles)('form-radio')}>
       <input type="radio" {...rest} />
       <i className={classNames.bind(styles)('form-icon')} /> {label}
     </label>
@@ -26,6 +24,5 @@ export const Radio: React.FC<RadioProps> = props => {
 }
 
 Radio.propTypes = {
-  className: PropTypes.string,
   label: PropTypes.string
 };

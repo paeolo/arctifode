@@ -1,9 +1,10 @@
 import React from 'react';
 import { useObserver } from 'mobx-react-lite';
-import styles from './Topbar.module.scss';
 
-import { Link, } from '@components/I18n';
-import { Navbar, Button } from '@components/Core';
+import { Button, Menu, Navbar } from '@components/Core';
+import { Link, SwitchLanguage } from '@components/I18n';
+import { locales } from '../../locales';
+
 import { useTranslate, useInjection } from '../../hooks';
 import { UserStore } from '../../stores';
 import { StoresBindings } from '../../container';
@@ -15,7 +16,7 @@ export const Topbar = () => {
   const { locale, t } = useTranslate();
 
   return useObserver(() =>
-    <Navbar className={styles.topbar}>
+    <Navbar>
       <Navbar.Section>
         <Navbar.Brand href='/'>
           {t('header.title')}
@@ -35,6 +36,19 @@ export const Topbar = () => {
         {userStore.isLogged &&
           <TopbarSignout />
         }
+        <Menu.Dropdown label={locale} right>
+          <Menu>
+            {locales.map(value =>
+              <Menu.Item key={value}>
+                <SwitchLanguage locale={value}>
+                  <Button.Link>
+                    {value}
+                  </Button.Link>
+                </SwitchLanguage>
+              </Menu.Item>
+            )}
+          </Menu>
+        </Menu.Dropdown>
       </Navbar.Section>
     </Navbar >
   );

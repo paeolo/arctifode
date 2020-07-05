@@ -16,7 +16,6 @@ type sizes = typeof ColumnTypes["sizes"][number];
 type viewportSizes = { [key in viewports]?: sizes };
 
 export type ColumnProps = {
-  className?: string;
   size?: sizes;
   sizes?: viewportSizes;
   offset?: typeof ColumnTypes["offsets"][number];
@@ -39,8 +38,7 @@ export const Column: React.FC<ColumnProps> = props => {
         [`hide-${props.hide}`]: props.hide,
         [`show-${props.show}`]: props.show
       },
-      sizes,
-      props.className
+      sizes
     )}>
       {props.children}
     </div>

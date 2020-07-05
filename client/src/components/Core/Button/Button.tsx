@@ -14,19 +14,17 @@ export const ButtonTypes = {
 };
 
 export type ButtonProps = {
-  className?: string;
   size?: typeof ButtonTypes["sizes"][number];
   state?: typeof ButtonTypes["states"][number];
   color?: typeof ButtonTypes["colors"][number];
   block?: boolean;
   action?: boolean;
-  circle?: boolean;
-} & ComponentProps<'button'>;
+  circle?: boolean
+} & Omit<ComponentProps<'button'>, 'className'>;
 
 const ButtonFC: React.FC<ButtonProps> = props => {
 
   const {
-    className,
     size,
     state,
     color,
@@ -47,9 +45,8 @@ const ButtonFC: React.FC<ButtonProps> = props => {
           'btn-sm': size === "small",
           'btn-lg': size === "large",
           'btn-action': action || circle,
-          's-circle': circle,
-        },
-        className
+          's-circle': circle
+        }
       )}
       {...rest}
     />
@@ -62,7 +59,7 @@ ButtonFC.propTypes = {
   color: PropTypes.oneOf(ButtonTypes["colors"]),
   block: PropTypes.bool,
   action: PropTypes.bool,
-  circle: PropTypes.bool,
+  circle: PropTypes.bool
 };
 
 export const Button = Object.assign(

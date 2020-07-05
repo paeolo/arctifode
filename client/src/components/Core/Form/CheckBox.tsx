@@ -6,19 +6,17 @@ import styles from './Form.module.scss';
 
 export type CheckBoxProps = {
   label: string;
-  className?: string;
-} & ComponentProps<'input'>
+} & Omit<ComponentProps<'input'>, 'className'>
 
 export const CheckBox: React.FC<CheckBoxProps> = props => {
 
   const {
     label,
-    className,
     ...rest
   } = props;
 
   return (
-    <label className={classNames.bind(styles)('form-checkbox', className)}>
+    <label className={classNames.bind(styles)('form-checkbox')}>
       <input type="checkbox" {...rest} />
       <i className={classNames.bind(styles)('form-icon')} /> {label}
     </label>
@@ -26,6 +24,5 @@ export const CheckBox: React.FC<CheckBoxProps> = props => {
 }
 
 CheckBox.propTypes = {
-  className: PropTypes.string,
   label: PropTypes.string
 };

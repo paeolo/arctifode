@@ -2,3 +2,9 @@
 @import '../../../assets/sass/spectre.css/mixins';
 
 @import '../../../assets/sass/spectre.css/navbar';
+
+.custom {
+  height: 2.5rem;
+  padding: 0 1rem;
+  box-shadow: 0 0 2px gray;
+}

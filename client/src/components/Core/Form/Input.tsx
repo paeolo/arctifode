@@ -20,29 +20,26 @@ export const InputTypes = {
 
 export type InputProps = {
   type?: typeof InputTypes["types"][number];
-  className?: string
-} & Omit<ComponentProps<'input'>, 'size'>;
+} & Omit<ComponentProps<'input'>, 'className'>;
 
 
 export const Input: React.FC<InputProps> = props => {
 
   const {
     type,
-    className,
     ...rest
   } = props;
 
   return (
     <input
       type={type}
-      className={classNames.bind(styles)('form-input', className)}
+      className={classNames.bind(styles)('form-input')}
       {...rest}
     />
   );
 }
 
 Input.propTypes = {
-  className: PropTypes.string,
   type: PropTypes.oneOf(InputTypes["types"]),
   id: PropTypes.string
 };

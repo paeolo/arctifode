@@ -11,7 +11,6 @@ export const GridTypes = {
 };
 
 export type GridProps = {
-  className?: string;
   maxWidth?: typeof DefaultsType["viewports"][number];
   paddingX?: typeof GridTypes["sizes"][number];
   paddingY?: typeof GridTypes["sizes"][number];
@@ -28,8 +27,7 @@ export const Grid: React.FC<GridProps> = props => {
         'py-1': props.paddingY === "small",
         'px-2': props.paddingX === "normal",
         'py-2': props.paddingY === "normal",
-      },
-      props.className
+      }
     )}>
       {props.children}
     </div>
@@ -37,7 +35,6 @@ export const Grid: React.FC<GridProps> = props => {
 }
 
 Grid.propTypes = {
-  className: PropTypes.string,
   maxWidth: PropTypes.oneOf(DefaultsType["viewports"]),
   paddingX: PropTypes.oneOf(GridTypes["sizes"]),
   paddingY: PropTypes.oneOf(GridTypes["sizes"])
