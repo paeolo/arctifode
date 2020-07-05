@@ -49,7 +49,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@fortawesome/fontawesome-free": "^5.13.0",
-    "@loopback/build": "^5.0.1",
+    "@loopback/build": "^6.1.0",
     "@types/bcrypt": "^3.0.0",
     "@types/classnames": "^2.2.10",
     "@types/cookie": "^0.4.0",
