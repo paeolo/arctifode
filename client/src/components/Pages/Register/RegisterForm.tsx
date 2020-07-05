@@ -33,7 +33,9 @@ export const RegisterForm = () => {
       try {
         await UserController.register({
           username: values.username,
-          password: values.password
+          password: values.password,
+          firstname: values.firstname,
+          lastname: values.lastname
         });
         await UserController.login({
           username: values.username,
