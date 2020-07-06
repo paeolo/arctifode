@@ -1,5 +1,4 @@
 import React, { ComponentProps } from 'react';
-import PropTypes from 'prop-types';
 
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
@@ -59,16 +58,6 @@ const ButtonFC: React.FC<ButtonProps> = props => {
     />
   );
 }
-
-ButtonFC.propTypes = {
-  size: PropTypes.oneOf(ButtonTypes["sizes"]),
-  state: PropTypes.oneOf(ButtonTypes["states"]),
-  color: PropTypes.oneOf(ButtonTypes["colors"]),
-  block: PropTypes.bool,
-  action: PropTypes.bool,
-  circle: PropTypes.bool,
-  cross: PropTypes.bool
-};
 
 export const Button = Object.assign(
   ButtonFC,

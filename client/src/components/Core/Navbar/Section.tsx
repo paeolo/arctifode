@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import classNames from 'classnames/bind';
 import styles from './Navbar.module.scss';
@@ -21,7 +20,3 @@ export const Section: React.FC<SectionProps> = props => {
     </section>
   );
 }
-
-Section.propTypes = {
-  center: PropTypes.bool
-};

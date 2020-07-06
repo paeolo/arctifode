@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import classNames from 'classnames/bind';
 import styles from './Grid.module.scss';
@@ -33,9 +32,3 @@ export const Grid: React.FC<GridProps> = props => {
     </div>
   );
 }
-
-Grid.propTypes = {
-  maxWidth: PropTypes.oneOf(DefaultsType["viewports"]),
-  paddingX: PropTypes.oneOf(GridTypes["sizes"]),
-  paddingY: PropTypes.oneOf(GridTypes["sizes"])
-};

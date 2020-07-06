@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import classNames from 'classnames/bind';
 import styles from './Navbar.module.scss';
@@ -19,7 +18,3 @@ export const Brand: React.FC<BrandProps> = props => {
     </a>
   );
 }
-
-Brand.propTypes = {
-  href: PropTypes.string
-};

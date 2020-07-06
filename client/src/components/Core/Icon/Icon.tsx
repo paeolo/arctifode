@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const IconTypes = {
@@ -30,8 +29,3 @@ export const Icon: React.FC<IconProps> = props => {
     {...rest}
   />
 }
-
-Icon.propTypes = {
-  size: PropTypes.oneOf(IconTypes["sizes"]),
-  icon: PropTypes.string
-};

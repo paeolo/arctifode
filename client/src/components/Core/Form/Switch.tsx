@@ -1,5 +1,4 @@
 import React, { ComponentProps } from 'react';
-import PropTypes from 'prop-types';
 
 import classNames from 'classnames/bind';
 import styles from './Form.module.scss';
@@ -22,7 +21,3 @@ export const Switch: React.FC<SwitchProps> = props => {
     </label>
   );
 }
-
-Switch.propTypes = {
-  label: PropTypes.string
-};

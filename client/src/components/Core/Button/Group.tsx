@@ -22,6 +22,3 @@ export const Group: React.FC<GroupProps> = props => {
 }
 
 Group.displayName = "Button.Group";
-Group.propTypes = {
-  block: PropTypes.bool,
-};

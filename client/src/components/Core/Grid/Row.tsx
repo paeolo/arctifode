@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import classNames from 'classnames/bind';
 import styles from './Grid.module.scss';
@@ -23,8 +22,3 @@ export const Row: React.FC<RowProps> = props => {
     </div>
   );
 }
-
-Row.propTypes = {
-  gapless: PropTypes.bool,
-  oneline: PropTypes.bool
-};

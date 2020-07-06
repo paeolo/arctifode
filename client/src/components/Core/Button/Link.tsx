@@ -1,5 +1,4 @@
 import React, { ComponentProps } from 'react';
-import PropTypes from 'prop-types';
 
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
@@ -45,11 +44,3 @@ export const Link: React.FC<LinkProps> = React.forwardRef(
       />
     );
   });
-
-Link.propTypes = {
-  size: PropTypes.oneOf(LinkTypes["sizes"]),
-  state: PropTypes.oneOf(LinkTypes["states"]),
-  block: PropTypes.bool,
-  action: PropTypes.bool,
-  circle: PropTypes.bool
-};

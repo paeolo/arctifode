@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 
@@ -49,11 +48,3 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = props => {
     </div>
   );
 }
-
-MenuDropdown.propTypes = {
-  label: PropTypes.string,
-  size: PropTypes.oneOf(MenuDropdownTypes["sizes"]),
-  state: PropTypes.oneOf(MenuDropdownTypes["states"]),
-  block: PropTypes.bool,
-  right: PropTypes.bool,
-};
