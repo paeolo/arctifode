@@ -32,6 +32,10 @@ import {
   JWTComponent,
   SECURITY_SCHEME_SPEC,
   AuthorizationPolicyComponent,
+  SanitizerComponent,
+  UploaderComponent,
+  UploaderBindings,
+  UploaderConfig,
 } from './components';
 import { NodeENV, CustomEnhancer } from './utils';
 
@@ -80,6 +84,8 @@ export class LBApplication extends BootMixin(RestApplication) {
     this.setupTypeORM();
     this.setupJWTComponent();
     this.setupAuthorizationComponent();
+    this.setupSanitizerComponent();
+    this.setupUploaderComponent();
   }
 
   private setupOpenAPI() {
@@ -138,5 +144,17 @@ export class LBApplication extends BootMixin(RestApplication) {
       });
     this.component(AuthorizationComponent);
     this.component(AuthorizationPolicyComponent);
+  }
+
+  private setupSanitizerComponent() {
+    this.component(SanitizerComponent);
+  }
+
+  private setupUploaderComponent() {
+    this.configure<UploaderConfig>(UploaderBindings.COMPONENT)
+      .to({
+        storageDirectory: path.join(__dirname, '../../data')
+      });
+    this.component(UploaderComponent);
   }
 }

@@ -15,6 +15,7 @@ export const InputTypes = {
     "color",
     "date",
     "time",
+    "file"
   ] as const,
 };
 

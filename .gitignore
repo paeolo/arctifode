@@ -10,6 +10,7 @@
 
 # production
 /logs
+/data
 /server.env
 /client.env
 /ormconfig.json
