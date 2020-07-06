@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { useInjection } from '../hooks';
 import { UserStore } from '../stores';
 import { StoresBindings } from '../container';
+import { initYup } from '../utils';
 
 function AppInit() {
   if (process.env.API_URL !== undefined) {
@@ -22,6 +23,7 @@ function AppInit() {
   if (typeof window === 'undefined') {
     useStaticRendering(true);
   }
+  initYup();
 }
 
 AppInit();

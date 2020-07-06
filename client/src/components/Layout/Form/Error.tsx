@@ -5,6 +5,7 @@ import { useTranslate } from '../../../hooks';
 
 interface ErrorProps {
   setError: (error: boolean) => void;
+  message?: string;
 }
 
 export const Error = (props: ErrorProps) => {
@@ -13,7 +14,13 @@ export const Error = (props: ErrorProps) => {
 
   return (
     <Toast color="error" setError={props.setError}>
-      {t('common.error')}
+      {(() => {
+        if (props.message === undefined)
+          return t('common.error');
+        else
+          return props.message
+      })()
+      }
     </Toast>
   )
 }

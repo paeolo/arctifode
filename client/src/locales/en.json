@@ -13,7 +13,8 @@
     "description": "Provide your credentials...",
     "username": "Username",
     "password": "Password",
-    "remember": "Remember me"
+    "remember": "Remember me",
+    "error": "Incorrect username or password."
   },
   "register": {
     "title": "Register",
@@ -26,5 +27,11 @@
   "common": {
     "submit": "Submit",
     "error": "An error has occured"
+  },
+  "validation": {
+    "default": "this field is invalid",
+    "required": "this field is required",
+    "min": "must be at least %{min} characters",
+    "max": "must be at least %{max} characters"
   }
 }

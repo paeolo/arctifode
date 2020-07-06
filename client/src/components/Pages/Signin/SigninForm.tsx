@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useFormik } from 'formik';
-import { useObserver } from "mobx-react-lite";
 import { UserController } from "@openapi/.";
+import * as yup from 'yup';
 
 import {
   Form,
@@ -23,12 +23,25 @@ export const SigninForm = () => {
   const { locale, t } = useTranslate();
   const [error, setError] = useState(false);
 
+  const schema = yup.object().shape({
+    username: yup.string()
+      .min(3)
+      .max(50)
+      .required(),
+    password: yup.string()
+      .min(8)
+      .max(50)
+      .required(),
+  });
+
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
       remember: false
     },
+    validationSchema: schema,
+    validateOnChange: false,
     onSubmit: async values => {
       try {
         await UserController.login({
@@ -43,30 +56,32 @@ export const SigninForm = () => {
     }
   });
 
-  return useObserver(() =>
+  return (
     <Section
       title={t('signin.title')}
       subtitle={t('signin.description')}>
       <Form onSubmit={formik.handleSubmit} >
         <h4>{t('signin.title')}</h4>
         <Form.Group>
-          <Form.Label id='username'>
+          <Form.Label htmlFor='username'>
             {t('signin.username')}
           </Form.Label>
           <Input
             id='username'
             value={formik.values.username}
+            error={formik.errors.username}
             onChange={formik.handleChange}
             type="text"
             placeholder="john.smith" />
         </Form.Group>
         <Form.Group>
-          <Form.Label id='password'>
+          <Form.Label htmlFor='password'>
             {t('signin.password')}
           </Form.Label>
           <Input
             id='password'
             value={formik.values.password}
+            error={formik.errors.password}
             onChange={formik.handleChange}
             type="password"
             placeholder="********" />
@@ -80,9 +95,12 @@ export const SigninForm = () => {
           />
         </Form.Group>
         <Divider />
-        {error && <Error setError={setError} />}
+        {error && <Error
+          message={t('signin.error')}
+          setError={setError} />
+        }
         <Submit />
       </Form >
     </Section >
-  )
+  );
 }

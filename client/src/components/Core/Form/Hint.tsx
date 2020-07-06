@@ -5,7 +5,7 @@ import styles from './Form.module.scss';
 export const Hint: React.FC = props => {
 
   return (
-    <p className={classNames.bind(styles)('form-input-hint')}>
+    <p className={classNames.bind(styles)('form-input-hint', 'hint')}>
       {props.children}
     </p>
   );
