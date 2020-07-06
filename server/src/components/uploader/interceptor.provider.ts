@@ -19,7 +19,10 @@ export class UploadInterceptorProvider implements Provider<GenericInterceptor<In
     @inject(UploaderBindings.STORAGE_DIRECTORY) storageDirectory: string
   ) {
     this.config = {
-      storage: multer.diskStorage({ destination: storageDirectory })
+      storage: multer.diskStorage({ destination: storageDirectory }),
+      limits: {
+        files: 1
+      }
     }
   }
 

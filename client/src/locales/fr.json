@@ -26,6 +26,7 @@
   },
   "common": {
     "submit": "Soumettre",
+    "success": "C'est fait!",
     "error": "Une erreur est survenue"
   },
   "validation": {

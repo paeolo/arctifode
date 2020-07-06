@@ -26,6 +26,7 @@
   },
   "common": {
     "submit": "Submit",
+    "success": "You did it!",
     "error": "An error has occured"
   },
   "validation": {

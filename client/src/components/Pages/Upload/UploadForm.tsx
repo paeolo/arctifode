@@ -1,40 +1,60 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from 'formik';
-import { useObserver } from "mobx-react-lite";
 import { ArtifactController } from "@openapi/.";
+import { useLocalStore, useObserver } from "mobx-react-lite";
+import * as yup from 'yup';
 
 import {
   Form,
   Input,
-} from "@components/Core/Form";
+  Bar
+} from "@components/Core";
 import {
   Section,
   Divider,
   Submit,
-  Error
+  Error,
+  Success
 } from "@components/Layout";
 import { useTranslate } from "../../../hooks";
 
 export const UploadForm = () => {
 
   const { locale, t } = useTranslate();
-  const [error, setError] = useState(false);
+  const store = useLocalStore(() => ({
+    error: false,
+    success: false,
+    loading: false,
+    progress: 0
+  }));
+
+  const schema = yup.object().shape({
+    file: yup.mixed().required()
+  });
 
   const formik = useFormik({
     initialValues: {
-      file: undefined
+      file: ''
     },
+    validationSchema: schema,
+    validateOnChange: false,
     onSubmit: async values => {
       try {
         const formData = new FormData();
         formData.append('file', values.file);
+        store.loading = true;
         await ArtifactController.upload(formData)
           .on('progress', event => {
-            console.log(event.percent)
+            store.progress = Math.ceil(event.percent);
           });
-        setError(false);
+        store.error = false;
+        store.loading = false;
+        store.success = true;
+        store.progress = 0;
       } catch {
-        setError(true);
+        store.error = true;
+        store.loading = false;
+        store.progress = 0;
       }
     }
   });
@@ -54,12 +74,19 @@ export const UploadForm = () => {
             onChange={event =>
               formik.setFieldValue('file', event.currentTarget.files[0]
               )}
+            error={formik.errors.file}
             type="file" />
         </Form.Group>
         <Divider />
-        {error && <Error setError={setError} />}
-        <Submit />
+        {store.success &&
+          <Success setSucess={success => store.success = success} />
+        }
+        {store.error &&
+          <Error setError={error => store.error = error} />
+        }
+        {store.loading && <Bar progress={store.progress} />}
+        {!store.loading && <Submit />}
       </Form >
     </Section >
-  )
+  );
 }
