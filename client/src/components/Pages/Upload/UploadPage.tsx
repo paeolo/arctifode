@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { UploadForm } from './UploadForm';
-import { Grid } from '@components/Core';
+import { Container } from '@components/Core';
 import { Header, Footer } from '@components/Layout';
 
 export const UploadPage = () => {
@@ -9,9 +9,9 @@ export const UploadPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <Grid maxWidth="lg">
+      <Container maxWidth="lg">
         <UploadForm />
-      </Grid>
+      </Container>
       <Footer />
     </React.Fragment >
   );

@@ -10,7 +10,8 @@ export const ButtonTypes = {
   sizes: ["small", "normal", "large"] as const,
   states: ["active", "disabled", "loading"] as const,
   colors: ["primary", "link", "success", "error"] as const,
-  positions: ["left", "right"] as const
+  positions: ["left", "right"] as const,
+  types: ["submit", "button", "reset"] as const
 };
 
 export type ButtonProps = {
@@ -18,11 +19,13 @@ export type ButtonProps = {
   state?: typeof ButtonTypes["states"][number];
   color?: typeof ButtonTypes["colors"][number];
   position?: typeof ButtonTypes["positions"][number];
+  type?: typeof ButtonTypes["types"][number];
   block?: boolean;
   action?: boolean;
   circle?: boolean;
   cross?: boolean;
-} & Omit<ComponentProps<'button'>, 'className'>;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+};
 
 const ButtonFC: React.FC<ButtonProps> = props => {
 
@@ -31,6 +34,7 @@ const ButtonFC: React.FC<ButtonProps> = props => {
     state,
     color,
     position,
+    type,
     block,
     action,
     circle,
@@ -54,6 +58,7 @@ const ButtonFC: React.FC<ButtonProps> = props => {
           's-circle': circle
         }
       )}
+      type={type || "button"}
       {...rest}
     />
   );

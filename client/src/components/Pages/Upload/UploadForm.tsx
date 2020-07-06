@@ -7,7 +7,11 @@ import * as yup from 'yup';
 import {
   Form,
   Input,
-  Bar
+  Bar,
+  Row,
+  Column,
+  Button,
+  Icon
 } from "@components/Core";
 import {
   Section,
@@ -25,7 +29,8 @@ export const UploadForm = () => {
     error: false,
     success: false,
     loading: false,
-    progress: 0
+    progress: 0,
+    request: undefined
   }));
 
   const schema = yup.object().shape({
@@ -43,10 +48,9 @@ export const UploadForm = () => {
         const formData = new FormData();
         formData.append('file', values.file);
         store.loading = true;
-        await ArtifactController.upload(formData)
-          .on('progress', event => {
-            store.progress = Math.ceil(event.percent);
-          });
+        store.request = ArtifactController.upload(formData)
+          .on('progress', event => store.progress = Math.ceil(event.percent));
+        await store.request;
         store.error = false;
         store.loading = false;
         store.success = true;
@@ -84,7 +88,21 @@ export const UploadForm = () => {
         {store.error &&
           <Error setError={error => store.error = error} />
         }
-        {store.loading && <Bar progress={store.progress} />}
+        {store.loading &&
+          <Row align="center">
+            <Column size="10">
+              <Bar progress={store.progress} />
+            </Column>
+            <Column size="1" offset="ml">
+              <Button
+                action
+                onClick={() => store.request.abort()}
+                size="small">
+                <Icon icon='fas fa-times' />
+              </Button>
+            </Column>
+          </Row>
+        }
         {!store.loading && <Submit />}
       </Form >
     </Section >

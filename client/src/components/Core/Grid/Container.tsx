@@ -5,17 +5,17 @@ import styles from './Grid.module.scss';
 
 import { DefaultsType } from '../types';
 
-export const GridTypes = {
+export const ContainerTypes = {
   sizes: ["small", "normal"] as const,
 };
 
-export type GridProps = {
+export type ContainerProps = {
   maxWidth?: typeof DefaultsType["viewports"][number];
-  paddingX?: typeof GridTypes["sizes"][number];
-  paddingY?: typeof GridTypes["sizes"][number];
+  paddingX?: typeof ContainerTypes["sizes"][number];
+  paddingY?: typeof ContainerTypes["sizes"][number];
 };
 
-export const Grid: React.FC<GridProps> = props => {
+export const Container: React.FC<ContainerProps> = props => {
 
   return (
     <div className={classNames.bind(styles)(
