@@ -55,10 +55,11 @@ export const UploadForm = () => {
         store.loading = false;
         store.success = true;
         store.progress = 0;
-      } catch {
-        store.error = true;
+      } catch (error) {
         store.loading = false;
         store.progress = 0;
+        if (!error.code || error.code !== 'ABORTED')
+          store.error = true;
       }
     }
   });
