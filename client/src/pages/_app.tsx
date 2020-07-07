@@ -13,16 +13,14 @@ import { useEffect } from 'react';
 import { useInjection } from '../hooks';
 import { UserStore } from '../stores';
 import { StoresBindings } from '../container';
-import { initYup } from '../utils';
+import { getApiURL, initYup } from '../utils';
 
 function AppInit() {
-  if (process.env.API_URL !== undefined) {
-    OpenAPI.options.url = process.env.API_URL;
-  }
 
   if (typeof window === 'undefined') {
     useStaticRendering(true);
   }
+  OpenAPI.options.url = getApiURL();
   initYup();
 }
 

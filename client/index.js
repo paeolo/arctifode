@@ -5,6 +5,7 @@ const express = require('express');
 const next = require('next');
 const path = require('path');
 const fs = require('fs');
+const ms = require('ms');
 
 const cookieParser = require('cookie-parser');
 const sslRedirect = require('heroku-ssl-redirect');
@@ -55,7 +56,15 @@ const createServer = async (directory, proxyApi, listenOnStart) => {
   server.use(cookieParser());
   server.use(localeMiddleware);
   server.use(removeTrailingSlashes);
-  server.get('*', (req, res) => handler(req, res));
+  server.get('*', (req, res) => {
+    if (req.cookies['API_URL'] === undefined) {
+      res.cookie('API_URL', process.env.API_URL, {
+        path: "/",
+        maxAge: ms('10m')
+      });
+    };
+    handler(req, res);
+  });
   if (listenOnStart) {
     server.listen(port, err => {
       if (err) throw err;
