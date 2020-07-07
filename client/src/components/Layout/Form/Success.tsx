@@ -1,5 +1,5 @@
-import React from 'react'
-import { Toast } from "@components/Core"
+import React from 'react';
+import { Toast } from "@components/Core";
 
 import { useTranslate } from '../../../hooks';
 

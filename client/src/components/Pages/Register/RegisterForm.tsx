@@ -6,8 +6,9 @@ import * as yup from 'yup';
 
 import {
   Form,
-  Input
-} from "@components/Core/Form";
+  Input,
+  H4
+} from "@components/Core";
 import {
   Section,
   Divider,
@@ -71,7 +72,7 @@ export const RegisterForm = () => {
       title={t('register.title')}
       subtitle={t('register.description')}>
       <Form onSubmit={formik.handleSubmit} >
-        <h4>{t('register.title')}</h4>
+        <H4>{t('register.title')}</H4>
         <Form.Group>
           <Form.Label htmlFor='username'>
             {t('register.username')}

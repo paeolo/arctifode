@@ -8,6 +8,9 @@
     "signout": "Sign out",
     "register": "Register"
   },
+  "index": {
+    "projects": "Projects"
+  },
   "signin": {
     "title": "Sign in",
     "description": "Provide your credentials...",

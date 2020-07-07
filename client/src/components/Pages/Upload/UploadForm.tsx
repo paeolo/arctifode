@@ -7,30 +7,28 @@ import * as yup from 'yup';
 import {
   Form,
   Input,
-  Bar,
-  Row,
-  Column,
-  Button,
-  Icon
+  H4
 } from "@components/Core";
 import {
   Section,
   Divider,
   Submit,
   Error,
-  Success
+  Success,
+  Progress
 } from "@components/Layout";
-import { useTranslate } from "../../../hooks";
 
 export const UploadForm = () => {
 
-  const { locale, t } = useTranslate();
   const store = useLocalStore(() => ({
     error: false,
     success: false,
     loading: false,
     progress: 0,
-    request: undefined
+    request: undefined,
+    setProgress(percent: number) {
+      store.progress = Math.ceil(percent)
+    }
   }));
 
   const schema = yup.object().shape({
@@ -47,17 +45,16 @@ export const UploadForm = () => {
       try {
         const formData = new FormData();
         formData.append('file', values.file);
+        store.progress = 0;
         store.loading = true;
         store.request = ArtifactController.upload(formData)
-          .on('progress', event => store.progress = Math.ceil(event.percent));
+          .on('progress', event => store.setProgress(event.percent));
         await store.request;
         store.error = false;
         store.loading = false;
         store.success = true;
-        store.progress = 0;
       } catch (error) {
         store.loading = false;
-        store.progress = 0;
         if (!error.code || error.code !== 'ABORTED')
           store.error = true;
       }
@@ -69,7 +66,7 @@ export const UploadForm = () => {
       title='Title'
       subtitle='Subtitle'>
       <Form onSubmit={formik.handleSubmit} >
-        <h4>Title</h4>
+        <H4>Title</H4>
         <Form.Group>
           <Form.Label id='file'>
             File
@@ -90,19 +87,10 @@ export const UploadForm = () => {
           <Error setError={error => store.error = error} />
         }
         {store.loading &&
-          <Row align="center">
-            <Column size="10">
-              <Bar progress={store.progress} />
-            </Column>
-            <Column size="1" offset="ml">
-              <Button
-                action
-                onClick={() => store.request.abort()}
-                size="small">
-                <Icon icon='fas fa-times' />
-              </Button>
-            </Column>
-          </Row>
+          <Progress
+            progress={store.progress}
+            onClick={() => store.request.abort()}
+          />
         }
         {!store.loading && <Submit />}
       </Form >

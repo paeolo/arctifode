@@ -1,6 +1,6 @@
 import styles from './Section.module.scss';
 
-import { Container, Column, Row } from '@components/Core';
+import { Container, Column, Row, H4, H6 } from '@components/Core';
 
 interface SectionProps {
   title: string;
@@ -13,8 +13,8 @@ export const Section: React.FC<SectionProps> = props => {
       <Row >
         <Column size="4" hide="sm">
           <div>
-            <h4>{props.title}</h4>
-            <h6 className={styles.subtitle}>{props.subtitle}</h6>
+            <H4>{props.title}</H4>
+            <H6 className={styles.subtitle}>{props.subtitle}</H6>
           </div>
         </Column>
         <Column size="8" sizes={{ sm: "12" }}>

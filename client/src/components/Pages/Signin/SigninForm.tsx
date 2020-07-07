@@ -7,8 +7,9 @@ import * as yup from 'yup';
 import {
   Form,
   Input,
-  Switch
-} from "@components/Core/Form";
+  Switch,
+  H4
+} from "@components/Core";
 import {
   Section,
   Divider,
@@ -61,7 +62,7 @@ export const SigninForm = () => {
       title={t('signin.title')}
       subtitle={t('signin.description')}>
       <Form onSubmit={formik.handleSubmit} >
-        <h4>{t('signin.title')}</h4>
+        <H4>{t('signin.title')}</H4>
         <Form.Group>
           <Form.Label htmlFor='username'>
             {t('signin.username')}

@@ -8,6 +8,9 @@
     "signout": "Déconnexion",
     "register": "Inscription"
   },
+  "index": {
+    "projects": "Projets"
+  },
   "signin": {
     "title": "Connexion",
     "description": "Renseigne tes identifiants...",
