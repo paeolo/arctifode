@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
+import {
+  ProjectController,
+  Visibility
+} from "@openapi/.";
 import {
   Form,
   Input,
@@ -19,7 +24,8 @@ import { useTranslate } from "../../../hooks";
 
 export const NewForm = () => {
 
-  const { t } = useTranslate();
+  const router = useRouter();
+  const { locale, t } = useTranslate();
   const [error, setError] = useState(false);
 
   const schema = yup.object().shape({
@@ -34,11 +40,22 @@ export const NewForm = () => {
       name: '',
       description: '',
       repository: '',
-      visibility: 'private'
+      visibility: Visibility.PRIVATE
     },
     validationSchema: schema,
     validateOnChange: false,
     onSubmit: async values => {
+      try {
+        await ProjectController.create({
+          name: values.name,
+          description: values.description,
+          visibility: values.visibility
+        });
+        router.replace('/[lang]', `/${locale}`);
+        setError(false);
+      } catch {
+        setError(true);
+      }
     }
   });
 
@@ -82,14 +99,14 @@ export const NewForm = () => {
         </Form.Label>
         <Radio
           id='visibility'
-          value='private'
-          checked={formik.values.visibility === 'private'}
+          value={Visibility.PRIVATE}
+          checked={formik.values.visibility === Visibility.PRIVATE}
           onChange={formik.handleChange}>
           <Icon icon='fas fa-lock' margin="right" />{t('visibility.private')}
         </Radio>
         <Radio id='visibility'
-          value='public'
-          checked={formik.values.visibility === 'public'}
+          value={Visibility.PUBLIC}
+          checked={formik.values.visibility === Visibility.PUBLIC}
           onChange={formik.handleChange}>
           <Icon icon='fas fa-globe' margin="right" />{t('visibility.public')}
         </Radio>

@@ -16,6 +16,7 @@ import { required, enumProperty } from '../../utils';
 import { UserCredentials } from './user-credentials.entity';
 import { UserProfile } from './user-profile.entity';
 import { Token } from './token.entity';
+import { Project } from '../project';
 
 @model()
 @Entity()
@@ -47,4 +48,7 @@ export class User {
 
   @OneToMany(() => Token, token => token.user)
   tokens: Token[];
+
+  @OneToMany(() => Project, project => project.user)
+  projects: Project[];
 }
