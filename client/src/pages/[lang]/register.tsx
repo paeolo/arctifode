@@ -6,7 +6,7 @@ import { WithLocale, getLocaleProps, getLocalePaths } from "@components/I18n";
 import { HtmlHead } from "@components/Core";
 import { Topbar } from "@components/Topbar";
 
-const Index = () => {
+const Register = () => {
   return (
     <React.Fragment>
       <HtmlHead />
@@ -16,7 +16,7 @@ const Index = () => {
   );
 }
 
-export default WithLocale(Index);
+export default WithLocale(Register);
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const lang: string = params.lang as string;

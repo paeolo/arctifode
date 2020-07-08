@@ -9,15 +9,20 @@ export type TextAreaProps = {
 
 export const TextArea: React.FC<TextAreaProps> = props => {
 
+  const {
+    inline,
+    ...rest
+  } = props;
+
   return (
     <textarea className={classNames.bind(styles)(
       'form-input',
       {
         'form-inline': props.inline
       }
-    )}>
-      {props.children}
-    </textarea>
+    )}
+      {...rest}
+    />
   );
 }
 

@@ -16,6 +16,7 @@ export const TopbarSignout = () => {
 
   return (
     <Button.Link
+      color="link"
       onClick={onClick}>
       {t('navbar.signout')}
     </Button.Link>

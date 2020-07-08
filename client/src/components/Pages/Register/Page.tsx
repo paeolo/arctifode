@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { UploadForm } from './UploadForm';
+import { RegisterForm } from './Form';
 import { Container } from '@components/Core';
 import { Header, Footer } from '@components/Layout';
 
-export const UploadPage = () => {
+export const RegisterPage = () => {
 
   return (
     <React.Fragment>
       <Header />
       <Container maxWidth="lg">
-        <UploadForm />
+        <RegisterForm />
       </Container>
       <Footer />
     </React.Fragment >

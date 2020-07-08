@@ -25,12 +25,12 @@ export const Topbar = () => {
       <Navbar.Section>
         {!userStore.isLogged &&
           <Link href='/register' passHref>
-            <Button.Link>{t('navbar.register')}</Button.Link>
+            <Button.Link color="link">{t('navbar.register')}</Button.Link>
           </Link>
         }
         {!userStore.isLogged &&
           <Link href='/signin' passHref>
-            <Button.Link>{t('navbar.signin')}</Button.Link>
+            <Button.Link color="link">{t('navbar.signin')}</Button.Link>
           </Link>
         }
         {userStore.isLogged &&
@@ -50,7 +50,7 @@ export const Topbar = () => {
             {locales.map(value =>
               <Menu.Item key={value}>
                 <SwitchLanguage locale={value}>
-                  <Button.Link>
+                  <Button.Link color="link">
                     {value}
                   </Button.Link>
                 </SwitchLanguage>

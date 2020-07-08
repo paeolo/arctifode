@@ -27,6 +27,20 @@
     "lastname": "Last name",
     "password": "Password"
   },
+  "new_project": {
+    "title": "Create blank project",
+    "description": "Create a blank project to house your artifacts, link them to environments, and deploy them, among other things.",
+    "project_name": "Project name",
+    "project_description": "Project description",
+    "project_repository": "Code repository",
+    "placeholder_name": "My project",
+    "placeholder_description": "My description"
+  },
+  "visibility": {
+    "title": "Visibility Level",
+    "private": "Private",
+    "public": "Public"
+  },
   "common": {
     "submit": "Submit",
     "success": "You did it!",

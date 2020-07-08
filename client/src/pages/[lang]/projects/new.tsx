@@ -1,22 +1,22 @@
 import React from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { SigninPage } from "@components/Pages";
+import { NewPage } from "@components/Pages";
 import { WithLocale, getLocaleProps, getLocalePaths } from "@components/I18n";
 import { HtmlHead } from "@components/Core";
 import { Topbar } from "@components/Topbar";
 
-const Signin = () => {
+const New = () => {
   return (
     <React.Fragment>
       <HtmlHead />
       <Topbar />
-      <SigninPage />
+      <NewPage />
     </React.Fragment>
   );
 }
 
-export default WithLocale(Signin);
+export default WithLocale(New);
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const lang: string = params.lang as string;

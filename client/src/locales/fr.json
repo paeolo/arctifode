@@ -27,6 +27,20 @@
     "lastname": "Nom",
     "password": "Mot de passe"
   },
+  "new_project": {
+    "title": "Créer un projet",
+    "description": "Créer un projet pour stocker vos artifacts, les relier à vos environnements, et les déployer, entre autres.",
+    "project_name": "Nom du projet",
+    "project_description": "Description du projet",
+    "project_repository": "Dépôt du code",
+    "placeholder_name": "Mon projet",
+    "placeholder_description": "Ma description"
+  },
+  "visibility": {
+    "title": "Niveau de visibilité",
+    "private": "Privé",
+    "public": "Public"
+  },
   "common": {
     "submit": "Soumettre",
     "success": "C'est fait!",
