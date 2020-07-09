@@ -44,6 +44,7 @@
     "public": "Public"
   },
   "common": {
+    "cancel": "Annuler",
     "submit": "Soumettre",
     "success": "C'est fait!",
     "error": "Une erreur est survenue"

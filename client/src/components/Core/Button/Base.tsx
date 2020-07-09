@@ -8,6 +8,7 @@ export const ButtonBaseTypes = {
   states: ["active", "disabled", "loading"] as const,
   colors: ["primary", "link", "success", "error"] as const,
   positions: ["left", "right"] as const,
+  spaces: ["small", "normal"] as const,
 };
 
 export type ButtonBaseProps = {
@@ -15,6 +16,7 @@ export type ButtonBaseProps = {
   state?: typeof ButtonBaseTypes["states"][number];
   color?: typeof ButtonBaseTypes["colors"][number];
   position?: typeof ButtonBaseTypes["positions"][number];
+  marginX?: typeof ButtonBaseTypes["spaces"][number];
   block?: boolean;
   action?: boolean;
   circle?: boolean;
@@ -32,6 +34,7 @@ export const ButtonBase = <T extends object>(Component: React.FC<any>) =>
       state,
       color,
       position,
+      marginX,
       block,
       action,
       circle,
@@ -56,7 +59,9 @@ export const ButtonBase = <T extends object>(Component: React.FC<any>) =>
             'btn-clear': cross,
             'tooltip': tooltip,
             'tooltip-left': tooltip && position === "right",
-            'tooltip-right': tooltip && position === "left"
+            'tooltip-right': tooltip && position === "left",
+            'mx-1': props.marginX === "small",
+            'mx-3': props.marginX === "normal"
           }
         )}
         data-tooltip={tooltip}

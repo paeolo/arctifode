@@ -118,7 +118,7 @@ export const NewForm = () => {
       </Form.Group>
       <Divider />
       {error && <Error setError={setError} />}
-      <Submit />
+      <Submit withCancel />
     </Form >
   );
 }

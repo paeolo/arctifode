@@ -1,11 +1,13 @@
 import React from 'react';
+import { UserStore } from '@stores';
+import { useTranslate, useInjection } from '@hooks';
 
 import { Container, Button, Icon, H4 } from '@components/Core';
 import { Header, Divider } from '@components/Layout';
-import { useTranslate, useInjection } from '@hooks';
 import { Link } from '@components/I18n';
-import { UserStore } from '@stores';
+
 import { StoresBindings } from '@container';
+import { ProjectList } from './List';
 
 export const IndexPage = () => {
 
@@ -38,6 +40,7 @@ export const IndexPage = () => {
           </Button.Link>
         }
         <Divider />
+        <ProjectList />
       </Container>
     </React.Fragment >
   );
