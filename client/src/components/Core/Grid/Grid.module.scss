@@ -7,3 +7,6 @@
 .align-center {
   align-items: center;
 }
+
+@include margin-variant(3, $unit-4);
+@include padding-variant(3, $unit-4);

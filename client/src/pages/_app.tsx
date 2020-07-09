@@ -6,7 +6,7 @@ import '../assets/sass/main.scss';
 import 'mobx-react-lite/batchingForReactDom';
 
 import ms from 'ms';
-import { OpenAPI, obtain, InfoController } from "@openapi/.";
+import { OpenAPI, obtain, InfoController } from "@openapi";
 import { useStaticRendering } from 'mobx-react-lite';
 import { AppProps } from 'next/app';
 import { useEffect } from 'react';

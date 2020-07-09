@@ -6,7 +6,7 @@ import styles from './Grid.module.scss';
 import { DefaultsType } from '../types';
 
 export const ContainerTypes = {
-  sizes: ["small", "normal"] as const,
+  sizes: ["small", "normal", "medium"] as const,
 };
 
 export type ContainerProps = {
@@ -26,6 +26,8 @@ export const Container: React.FC<ContainerProps> = props => {
         'py-1': props.paddingY === "small",
         'px-2': props.paddingX === "normal",
         'py-2': props.paddingY === "normal",
+        'px-3': props.paddingX === "medium",
+        'py-3': props.paddingY === "medium",
       }
     )}>
       {props.children}

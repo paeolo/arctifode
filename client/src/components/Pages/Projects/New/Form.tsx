@@ -5,8 +5,9 @@ import * as yup from 'yup';
 
 import {
   ProjectController,
-  Visibility
-} from "@openapi/.";
+  Visibility,
+  obtain
+} from "@openapi";
 import {
   Form,
   Input,
@@ -20,7 +21,7 @@ import {
   Submit,
   Error
 } from "@components/Layout";
-import { useTranslate } from "../../../hooks";
+import { useTranslate } from "@hooks";
 
 export const NewForm = () => {
 
@@ -46,12 +47,15 @@ export const NewForm = () => {
     validateOnChange: false,
     onSubmit: async values => {
       try {
-        await ProjectController.create({
+        const project = await obtain(ProjectController.create({
           name: values.name,
           description: values.description,
           visibility: values.visibility
-        });
-        router.replace('/[lang]', `/${locale}`);
+        }));
+        router.replace(
+          '/[lang]/projects/[id]',
+          `/${locale}/projects/${project.id}`
+        );
         setError(false);
       } catch {
         setError(true);
@@ -100,15 +104,16 @@ export const NewForm = () => {
         <Radio
           id='visibility'
           value={Visibility.PRIVATE}
-          checked={formik.values.visibility === Visibility.PRIVATE}
-          onChange={formik.handleChange}>
-          <Icon icon='fas fa-lock' margin="right" />{t('visibility.private')}
+          formik={formik}>
+          <Icon icon='fas fa-lock' margin="right" />
+          {t('visibility.private')}
         </Radio>
-        <Radio id='visibility'
+        <Radio
+          id='visibility'
           value={Visibility.PUBLIC}
-          checked={formik.values.visibility === Visibility.PUBLIC}
-          onChange={formik.handleChange}>
-          <Icon icon='fas fa-globe' margin="right" />{t('visibility.public')}
+          formik={formik}>
+          <Icon icon='fas fa-globe' margin="right" />
+          {t('visibility.public')}
         </Radio>
       </Form.Group>
       <Divider />

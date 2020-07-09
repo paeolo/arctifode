@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
-import { UserController, withCookie, User, UserRole } from '@openapi/.';
+import { UserController, withCookie, User, UserRole } from '@openapi';
 import { AuthenticationProps } from './WithAuthentication';
 import { getCookieFromResponse } from './utils';
 

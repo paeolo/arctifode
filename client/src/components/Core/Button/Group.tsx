@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 
 import classNames from 'classnames/bind';
@@ -8,7 +7,7 @@ export type GroupProps = {
   block?: boolean;
 };
 
-export const Group: React.FC<GroupProps> = props => {
+export const ButtonGroupFC: React.FC<GroupProps> = props => {
 
   return (
     <div
@@ -21,4 +20,4 @@ export const Group: React.FC<GroupProps> = props => {
   )
 }
 
-Group.displayName = "Button.Group";
+ButtonGroupFC.displayName = "Button.Group";

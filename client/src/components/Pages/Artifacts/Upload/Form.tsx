@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from 'formik';
-import { ArtifactController } from "@openapi/.";
+import { ArtifactController } from "@openapi";
 import { useLocalStore, useObserver } from "mobx-react-lite";
 import * as yup from 'yup';
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useFormik } from 'formik';
-import { UserController } from "@openapi/.";
+import { UserController } from "@openapi";
 import * as yup from 'yup';
 
 import {

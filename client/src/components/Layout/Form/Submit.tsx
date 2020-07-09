@@ -14,12 +14,11 @@ export const Submit = (props: SubmitProps) => {
 
   return (
     <Form.Group>
-      <Button
+      <Button.Submit
         color={props.error ? "error" : "primary"}
-        state={props.loading ? "loading" : "active"}
-        type="submit">
+        state={props.loading ? "loading" : "active"}>
         {t('common.submit')}
-      </Button>
+      </Button.Submit>
     </Form.Group>
   )
 }

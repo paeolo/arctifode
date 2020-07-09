@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useFormik } from 'formik';
-import { UserController } from "@openapi/.";
+import { UserController } from "@openapi";
 import * as yup from 'yup';
 
 import {
@@ -21,7 +21,7 @@ export const RegisterForm = () => {
 
   const router = useRouter();
   const { locale, t } = useTranslate();
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(undefined);
 
   const schema = yup.object().shape({
     username: yup.string()
@@ -61,8 +61,11 @@ export const RegisterForm = () => {
         });
         router.replace('/[lang]', `/${locale}`);
         setError(false);
-      } catch {
-        setError(true);
+      } catch (error) {
+        if (error.status === 409)
+          setError(409)
+        else
+          setError(true);
       }
     }
   });
@@ -122,7 +125,11 @@ export const RegisterForm = () => {
             placeholder="********" />
         </Form.Group>
         <Divider />
-        {error && <Error setError={setError} />}
+        {error &&
+          <Error
+            setError={setError}
+            message={error == 409 ? t('register.error') : undefined} />
+        }
         <Submit />
       </Form >
     </Section >

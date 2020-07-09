@@ -9,7 +9,8 @@
     "register": "Register"
   },
   "index": {
-    "projects": "Projects"
+    "projects": "Projects",
+    "please_connect": "Please connect"
   },
   "signin": {
     "title": "Sign in",
@@ -17,7 +18,7 @@
     "username": "Username",
     "password": "Password",
     "remember": "Remember me",
-    "error": "Incorrect username or password."
+    "error": "Incorrect username or password"
   },
   "register": {
     "title": "Register",
@@ -25,7 +26,8 @@
     "username": "Username",
     "firstname": "First name",
     "lastname": "Last name",
-    "password": "Password"
+    "password": "Password",
+    "error": "Username is already taken"
   },
   "new_project": {
     "title": "Create blank project",

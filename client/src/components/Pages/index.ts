@@ -1,5 +1,5 @@
+export * from './Artifacts';
 export * from './Index';
-export * from './NewProject';
+export * from './Projects';
 export * from './Register';
 export * from './Signin';
-export * from './Upload';

@@ -9,7 +9,7 @@ export const NewPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" paddingX="medium">
         <NewForm />
       </Container>
       <Footer />

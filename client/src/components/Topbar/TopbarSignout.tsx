@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { UserController } from "@openapi/.";
+import { UserController } from "@openapi";
 
 import { useTranslate } from "../../hooks";
 import { Button } from "@components/Core";

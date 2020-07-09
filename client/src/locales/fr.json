@@ -9,7 +9,8 @@
     "register": "Inscription"
   },
   "index": {
-    "projects": "Projets"
+    "projects": "Projets",
+    "please_connect": "Veuillez vous connecter"
   },
   "signin": {
     "title": "Connexion",
@@ -17,7 +18,7 @@
     "username": "Nom d'utilisateur",
     "password": "Mot de passe",
     "remember": "Se souvenir de moi",
-    "error": "Identifiant ou mot de passe incorrect."
+    "error": "Identifiant ou mot de passe incorrect"
   },
   "register": {
     "title": "Inscription",
@@ -25,7 +26,8 @@
     "username": "Nom d'utilisateur",
     "firstname": "Prénom",
     "lastname": "Nom",
-    "password": "Mot de passe"
+    "password": "Mot de passe",
+    "error": "Nom d'utilisateur déjà pris"
   },
   "new_project": {
     "title": "Créer un projet",
