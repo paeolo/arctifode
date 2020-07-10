@@ -25,7 +25,7 @@ export const Submit = (props: SubmitProps) => {
       {props.withCancel &&
         <Button
           marginX="normal"
-          color="error"
+          color="link"
           onClick={() => router.back()}>
           {t('common.cancel')}
         </Button>

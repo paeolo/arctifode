@@ -1,9 +1,16 @@
 import React from 'react';
+import classNames from 'classnames/bind';
+import styles from './Index.module.scss';
 
-export const ProjectList = () => {
+import { ListItem } from './ListItem';
+
+export const List = () => {
 
   return (
-    <React.Fragment>
-    </React.Fragment >
+    <div className={classNames.bind(styles)('list')}>
+      <ListItem />
+      <ListItem />
+      <ListItem />
+    </div>
   );
 }

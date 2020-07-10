@@ -3,8 +3,4 @@
 
 @import '../../../assets/sass/spectre.css/buttons';
 @import '../../../assets/sass/spectre.css/tooltips';
-@import '../../../assets/sass/spectre.css/utilities/position';
-@import '../../../assets/sass/spectre.css/utilities/shapes';
 
-@include margin-variant(3, $unit-3);
-@include padding-variant(3, $unit-3);

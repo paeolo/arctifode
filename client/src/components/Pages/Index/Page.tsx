@@ -7,7 +7,7 @@ import { Header, Divider } from '@components/Layout';
 import { Link } from '@components/I18n';
 
 import { StoresBindings } from '@container';
-import { ProjectList } from './List';
+import { List } from './List';
 
 export const IndexPage = () => {
 
@@ -40,7 +40,7 @@ export const IndexPage = () => {
           </Button.Link>
         }
         <Divider />
-        <ProjectList />
+        <List />
       </Container>
     </React.Fragment >
   );

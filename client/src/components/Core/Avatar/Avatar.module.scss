@@ -1,9 +1,8 @@
 @import '../../../assets/sass/variables.scss';
 @import '../../../assets/sass/spectre.css/mixins';
 
-@import '../../../assets/sass/spectre.css/layout';
+@import '../../../assets/sass/spectre.css/avatars';
 
-.align-center {
-  align-items: center;
+.custom {
+  background-color: #5755d9;
 }
-

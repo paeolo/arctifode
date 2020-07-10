@@ -1,3 +1,4 @@
+export * from './Avatar';
 export * from './Bar';
 export * from './Button';
 export * from './Form';

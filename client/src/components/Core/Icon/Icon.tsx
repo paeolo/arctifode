@@ -12,6 +12,7 @@ export type IconProps = {
   size?: typeof IconTypes["sizes"][number];
   margin?: typeof IconTypes["directions"][number];
   icon?: string;
+  secondary?: boolean;
 };
 
 export const Icon: React.FC<IconProps> = props => {
@@ -20,6 +21,7 @@ export const Icon: React.FC<IconProps> = props => {
     size,
     margin,
     icon,
+    secondary,
     ...rest
   } = props;
 
@@ -27,10 +29,9 @@ export const Icon: React.FC<IconProps> = props => {
     {
       'fa-2x': props.size === "medium",
       'fa-3x': props.size === "large",
-      'fa-4x': props.size === "huge"
-    },
-    {
-      [`margin-${margin}`]: margin
+      'fa-4x': props.size === "huge",
+      [`margin-${margin}`]: margin,
+      'secondary': secondary
     },
     icon
   )}
