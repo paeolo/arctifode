@@ -47,7 +47,8 @@
     "cancel": "Cancel",
     "submit": "Submit",
     "success": "You did it!",
-    "error": "An error has occured"
+    "error": "An error has occured",
+    "updated": "updated"
   },
   "validation": {
     "default": "this field is invalid",

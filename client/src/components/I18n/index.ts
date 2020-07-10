@@ -12,15 +12,16 @@ export async function getLocaleProps(locale: string): Promise<LocaleProps> {
   if (!locales.includes(locale)) {
     return {
       locale: null,
-      phrases: null
+      polyglot: null
     }
   }
 
   const phrases = await import(`../../locales/${locale}.json`)
-    .then(m => m.default)
+    .then(m => m.default);
+
   return {
     locale: locale,
-    phrases: phrases
+    polyglot: { phrases: phrases }
   }
 }
 

@@ -2,7 +2,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToOne,
+  ManyToOne
 } from "typeorm";
 
 import { TokenType } from '../../components/jwt';

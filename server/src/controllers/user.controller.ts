@@ -189,7 +189,7 @@ export class UserController {
     @inject(SecurityBindings.USER) currentUserProfile: UserProfile
   ) {
     let userId: number = currentUserProfile.id;
-    const foundUser = await this.users.findOne({
+    const foundUser = await this.users.findOneOrFail({
       where: { id: userId },
     });
     return foundUser;

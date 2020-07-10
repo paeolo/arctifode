@@ -6,6 +6,7 @@ import { Row, Column, Avatar, Icon } from '@components/Core';
 import { Link } from '@components/I18n/Link';
 import { Project } from '@openapi';
 import { getVisibilityIcon } from '../../../utils';
+import { useTimeAgo, useTranslate } from '@hooks';
 
 export type ListItemProps = {
   project: Project
@@ -13,12 +14,15 @@ export type ListItemProps = {
 
 export const ListItem = (props: ListItemProps) => {
 
+  const timeAgo = useTimeAgo();
+  const { t } = useTranslate();
+
   return (
     <div className={classNames.bind(styles)('list-item')}>
       <Row align="center">
         <Column size="auto">
           <Avatar label="M" size="lg" marginRight="normal" />
-          <Link href='/projects/2'>
+          <Link href={`/projects/${props.project.id}`}>
             <a className={classNames.bind(styles)('text-primary')}>
               {props.project.name}
             </a>
@@ -30,7 +34,7 @@ export const ListItem = (props: ListItemProps) => {
         </Column>
         <Column size="auto" offset="ml">
           <div className={classNames.bind(styles)('text-secondary')}>
-            Updated 6 hours ago
+            {`${t('common.updated')} ${timeAgo.format(Date.parse(props.project.updateDate))}`}
           </div>
         </Column>
       </Row>

@@ -4,6 +4,8 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { MinLength } from 'class-validator';
 import { required, enumProperty } from '../../utils';
@@ -18,6 +20,14 @@ export class Project {
   @PrimaryGeneratedColumn()
   @property()
   id: number;
+
+  @CreateDateColumn({ type: 'timestamptz' })
+  @property()
+  creationDate: Date;
+
+  @UpdateDateColumn({ type: 'timestamptz' })
+  @property()
+  updateDate: Date;
 
   @Column()
   @MinLength(2,

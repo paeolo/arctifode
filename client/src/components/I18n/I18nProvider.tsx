@@ -1,66 +1,45 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Polyglot, { PolyglotOptions } from 'node-polyglot';
+import Polyglot from 'node-polyglot';
+import TimeAgo from 'javascript-time-ago';
+
+import en from 'javascript-time-ago/locale/en';
+import fr from 'javascript-time-ago/locale/fr';
 
 import { defaultLocale } from '../../locales';
 
 export const I18nContext = React.createContext(
-  new Polyglot({
-    locale: defaultLocale,
-    phrases: {}
-  })
+  {
+    polyglot: new Polyglot({
+      locale: defaultLocale,
+      phrases: {}
+    }),
+    timeAgo: undefined
+  }
 );
 
-export default class I18nProvider extends React.Component<PolyglotOptions> {
+export type I18nProviderProps = {
+  locale: string;
+  polyglot: {
+    phrases: any
+  },
+};
 
-  private readonly polyglot: Polyglot;
+export const I18nProvider: React.FC<I18nProviderProps> = props => {
 
-  constructor(props: PolyglotOptions) {
-    super(props);
+  const polyglot = new Polyglot({
+    locale: props.locale || defaultLocale,
+    phrases: props.polyglot.phrases || {},
+  });
 
-    this.polyglot = new Polyglot({
-      locale: props.locale || defaultLocale,
-      phrases: props.phrases || {},
-      allowMissing: props.allowMissing,
-      onMissingKey: props.onMissingKey,
-      interpolation: props.interpolation,
-    })
-  }
+  TimeAgo.addLocale(props.locale === "fr"
+    ? fr
+    : en
+  );
+  const timeAgo = new TimeAgo(props.locale);
 
-  componentDidUpdate(props: PolyglotOptions) {
-    if (props.locale !== this.props.locale) {
-      this.polyglot.locale(this.props.locale)
-    }
-
-    if (props.phrases !== this.props.phrases) {
-      this.polyglot.replace(this.props.phrases)
-    }
-  }
-
-  static propTypes = {
-    locale: PropTypes.string.isRequired,
-    allowMissing: PropTypes.bool,
-    onMissingKey: PropTypes.func,
-    interpolation: PropTypes.shape({
-      suffix: PropTypes.string,
-      prefix: PropTypes.string,
-    }),
-    children: PropTypes.element.isRequired,
-  };
-
-  static defaultProps = {
-    allowMissing: false,
-    onMissingKey: undefined,
-    interpolation: undefined,
-  };
-
-  render() {
-    const { children } = this.props
-
-    return (
-      <I18nContext.Provider value={this.polyglot}>
-        {React.Children.only(children)}
-      </I18nContext.Provider>
-    )
-  }
+  return (
+    <I18nContext.Provider value={{ polyglot: polyglot, timeAgo: timeAgo }}>
+      {React.Children.only(props.children)}
+    </I18nContext.Provider>
+  );
 }
