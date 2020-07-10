@@ -9,7 +9,7 @@ export type LocaleProps = Partial<I18nProviderProps>;
 
 export const WithLocale = (WrappedPage: NextPage<any>): NextPage<LocaleProps> => props => {
 
-  const { locale, polyglot, ...pageProps } = props;
+  const { locale, polyglot, timeAgo, ...pageProps } = props;
   const container = useContext(InversifyContext);
 
   if (!locale) {
@@ -22,8 +22,9 @@ export const WithLocale = (WrappedPage: NextPage<any>): NextPage<LocaleProps> =>
   return (
     <I18nProvider
       locale={locale}
-      polyglot={{ phrases: polyglot.phrases }}>
+      polyglot={polyglot}
+      timeAgo={timeAgo}>
       <WrappedPage {...pageProps} />
-    </I18nProvider>
+    </I18nProvider >
   );
 }

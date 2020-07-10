@@ -1,11 +1,9 @@
 import React from 'react';
 import Polyglot from 'node-polyglot';
-import TimeAgo from 'javascript-time-ago';
-
-import en from 'javascript-time-ago/locale/en';
-import fr from 'javascript-time-ago/locale/fr';
+import { format, register } from 'timeago.js';
 
 import { defaultLocale } from '../../locales';
+import { getTimeAgoLocale, initYup } from './utils';
 
 export const I18nContext = React.createContext(
   {
@@ -22,6 +20,9 @@ export type I18nProviderProps = {
   polyglot: {
     phrases: any
   },
+  timeAgo: {
+    phrases: any
+  }
 };
 
 export const I18nProvider: React.FC<I18nProviderProps> = props => {
@@ -31,11 +32,14 @@ export const I18nProvider: React.FC<I18nProviderProps> = props => {
     phrases: props.polyglot.phrases || {},
   });
 
-  TimeAgo.addLocale(props.locale === "fr"
-    ? fr
-    : en
-  );
-  const timeAgo = new TimeAgo(props.locale);
+  initYup();
+
+  register(props.locale, getTimeAgoLocale(
+    props.timeAgo.phrases.ago,
+    props.timeAgo.phrases.in
+  ));
+
+  const timeAgo = (date: Date) => format(date, props.locale);
 
   return (
     <I18nContext.Provider value={{ polyglot: polyglot, timeAgo: timeAgo }}>

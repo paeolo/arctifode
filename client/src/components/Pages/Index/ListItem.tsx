@@ -34,7 +34,7 @@ export const ListItem = (props: ListItemProps) => {
         </Column>
         <Column size="auto" offset="ml">
           <div className={classNames.bind(styles)('text-secondary')}>
-            {`${t('common.updated')} ${timeAgo.format(Date.parse(props.project.updateDate))}`}
+            {`${t('common.updated')} ${timeAgo(new Date(props.project.updateDate))}`}
           </div>
         </Column>
       </Row>

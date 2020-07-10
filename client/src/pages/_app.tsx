@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import { useInjection } from '../hooks';
 import { UserStore } from '../stores';
 import { StoresBindings } from '../container';
-import { getApiURL, initYup } from '../utils';
+import { getApiURL } from '../utils';
 
 function AppInit() {
 
@@ -21,7 +21,6 @@ function AppInit() {
     useStaticRendering(true);
   }
   OpenAPI.options.url = getApiURL();
-  initYup();
 }
 
 AppInit();
