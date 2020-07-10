@@ -4,8 +4,14 @@ import styles from './Index.module.scss';
 
 import { Row, Column, Avatar, Icon } from '@components/Core';
 import { Link } from '@components/I18n/Link';
+import { Project } from '@openapi';
+import { getVisibilityIcon } from '../../../utils';
 
-export const ListItem = () => {
+export type ListItemProps = {
+  project: Project
+}
+
+export const ListItem = (props: ListItemProps) => {
 
   return (
     <div className={classNames.bind(styles)('list-item')}>
@@ -14,10 +20,13 @@ export const ListItem = () => {
           <Avatar label="M" size="lg" marginRight="normal" />
           <Link href='/projects/2'>
             <a className={classNames.bind(styles)('text-primary')}>
-              My Project
-          </a>
+              {props.project.name}
+            </a>
           </Link>
-          <Icon icon='fas fa-lock' margin="left" secondary />
+          <Icon
+            icon={getVisibilityIcon(props.project.visibility)}
+            margin="left"
+            secondary />
         </Column>
         <Column size="auto" offset="ml">
           <div className={classNames.bind(styles)('text-secondary')}>

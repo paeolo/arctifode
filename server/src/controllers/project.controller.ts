@@ -13,6 +13,7 @@ import {
   api,
   put,
   requestBody,
+  get,
 } from '@loopback/rest';
 
 import {
@@ -21,7 +22,7 @@ import {
   typeorm,
 } from '../components';
 import { Project, Visibility } from '../entity';
-import { Returns, required, enumProperty } from '../utils';
+import { Returns, required, enumProperty, ReturnsArray } from '../utils';
 import { Repository } from 'typeorm';
 
 @model()
@@ -47,7 +48,7 @@ export class ProjectController {
   **/
   @put(
     '/create',
-    Returns(Project, 'The created project')
+    Returns(Project, 'The created project').withSecurity()
   )
   @authenticate('basic')
   @logger(LOGGER_LEVEL.INFO)
@@ -62,5 +63,36 @@ export class ProjectController {
       userId: currentUserProfile.id
     });
     return await this.projects.save(project);
+  }
+
+  /**
+  ** Obtain an array of projects for user
+  **/
+  @get(
+    '/obtain',
+    ReturnsArray(Project, 'An array of projects').withSecurity()
+  )
+  @authenticate('basic')
+  @logger(LOGGER_LEVEL.DEBUG)
+  async obtain(
+    @inject(SecurityBindings.USER) currentUserProfile: UserProfile
+  ) {
+    return await this.projects.find();
+  }
+
+  /**
+  ** Obtain an array of public projects
+  **/
+  @get(
+    '/obtainPublic',
+    ReturnsArray(Project, 'An array of public projects')
+  )
+  @logger(LOGGER_LEVEL.DEBUG)
+  async obtainPublic() {
+    return await this.projects.find({
+      where: {
+        visibility: Visibility.PUBLIC
+      }
+    });
   }
 }

@@ -6,10 +6,16 @@ import { Container, Button, Icon, H4 } from '@components/Core';
 import { Header, Divider } from '@components/Layout';
 import { Link } from '@components/I18n';
 
+import { Project } from '@openapi';
 import { StoresBindings } from '@container';
 import { List } from './List';
 
-export const IndexPage = () => {
+
+export type IndexPageProps = {
+  projects: Project[];
+}
+
+export const IndexPage = (props: IndexPageProps) => {
 
   const { t } = useTranslate();
   const userStore = useInjection<UserStore>(StoresBindings.USER);
@@ -40,7 +46,7 @@ export const IndexPage = () => {
           </Button.Link>
         }
         <Divider />
-        <List />
+        <List projects={props.projects} />
       </Container>
     </React.Fragment >
   );

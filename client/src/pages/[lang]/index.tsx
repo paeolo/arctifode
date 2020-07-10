@@ -1,5 +1,6 @@
 import React from "react";
 import { GetServerSideProps } from "next";
+import { Project, ProjectController, withCookie, obtain } from "@openapi";
 
 import { IndexPage } from "@components/Pages";
 import { WithLocale, getLocaleProps } from "@components/I18n";
@@ -7,12 +8,16 @@ import { WithAuthentication, getAuthenticationProps } from "@components/Authenti
 import { HtmlHead } from "@components/Core";
 import { Topbar } from "@components/Topbar";
 
-const Index = () => {
+type IndexProps = {
+  projects: Project[];
+}
+
+const Index = (props: IndexProps) => {
   return (
     <React.Fragment>
       <HtmlHead />
       <Topbar />
-      <IndexPage />
+      <IndexPage projects={props.projects} />
     </React.Fragment>
   );
 }
@@ -24,8 +29,18 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const lang = context.params.lang as string;
   const localeProps = await getLocaleProps(lang);
   const authenticationProps = await getAuthenticationProps(context);
+  const cookie = context.req.headers.cookie;
+  let projects = [];
+  try {
+    if (authenticationProps.currentUser !== null)
+      projects = await withCookie(cookie)(ProjectController.obtain());
+    else
+      projects = await obtain(ProjectController.obtainPublic());
+  } catch (error) { }
+
   return {
     props: {
+      projects: projects,
       ...authenticationProps,
       ...localeProps
     }

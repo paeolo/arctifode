@@ -22,6 +22,7 @@ import {
   Error
 } from "@components/Layout";
 import { useTranslate } from "@hooks";
+import { getVisibilityIcon } from "../../../../utils";
 
 export const NewForm = () => {
 
@@ -105,14 +106,14 @@ export const NewForm = () => {
           id='visibility'
           value={Visibility.PRIVATE}
           formik={formik}>
-          <Icon icon='fas fa-lock' margin="right" />
+          <Icon icon={getVisibilityIcon(Visibility.PRIVATE)} margin="right" />
           {t('visibility.private')}
         </Radio>
         <Radio
           id='visibility'
           value={Visibility.PUBLIC}
           formik={formik}>
-          <Icon icon='fas fa-globe' margin="right" />
+          <Icon icon={getVisibilityIcon(Visibility.PUBLIC)} margin="right" />
           {t('visibility.public')}
         </Radio>
       </Form.Group>
