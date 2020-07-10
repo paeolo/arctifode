@@ -77,7 +77,9 @@ export class ProjectController {
   async obtain(
     @inject(SecurityBindings.USER) currentUserProfile: UserProfile
   ) {
-    return await this.projects.find();
+    return await this.projects.find({
+      order: { updateDate: "DESC" }
+    });
   }
 
   /**
@@ -92,7 +94,8 @@ export class ProjectController {
     return await this.projects.find({
       where: {
         visibility: Visibility.PUBLIC
-      }
+      },
+      order: { updateDate: "DESC" }
     });
   }
 }
