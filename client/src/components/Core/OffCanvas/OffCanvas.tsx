@@ -8,6 +8,7 @@ import { Sidebar } from './Sidebar';
 import { Content } from './Content';
 import { Toogle } from './Toogle';
 import { Overlay } from './Overlay';
+import { Header } from './Header';
 
 export type OffCanvasStore = {
   active: boolean;
@@ -44,6 +45,7 @@ export const OffCanvas = Object.assign(
   OffCanvasFC,
   {
     displayName: 'OffCanvas',
+    Header: Header,
     Overlay: Overlay,
     Sidebar: Sidebar,
     Content: Content,

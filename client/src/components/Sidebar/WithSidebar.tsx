@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { OffCanvas } from '@components/Core'
 import { Sidebar } from './Sidebar';
-import { useLocalStore, useObserver } from 'mobx-react-lite';
+import { useLocalStore } from 'mobx-react-lite';
 
 export const WithSidebar: React.FC = props => {
 
@@ -17,7 +17,9 @@ export const WithSidebar: React.FC = props => {
       </OffCanvas.Sidebar>
       <OffCanvas.Overlay store={store} />
       <OffCanvas.Content>
-        <OffCanvas.Toogle store={store} />
+        <OffCanvas.Header>
+          <OffCanvas.Toogle store={store} />
+        </OffCanvas.Header>
         {props.children}
       </OffCanvas.Content>
     </OffCanvas >

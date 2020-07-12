@@ -6,7 +6,6 @@ export const ProjectPage = () => {
   return (
     <React.Fragment>
       <WithSidebar>
-        lol
       </WithSidebar>
     </React.Fragment >
   );

@@ -5,7 +5,6 @@ export const Sidebar: React.FC = () => {
 
   return useObserver(() =>
     <React.Fragment>
-      lol
     </React.Fragment>
   );
 }
