@@ -2,8 +2,10 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './OffCanvas.module.scss';
 
+import { OffCanvasStore } from './OffCanvas';
+
 export type OverlayProps = {
-  setActive?: (active: boolean) => void;
+  store: OffCanvasStore
 };
 
 export const Overlay = (props: OverlayProps) => {
@@ -11,7 +13,7 @@ export const Overlay = (props: OverlayProps) => {
     <a className={classNames.bind(styles)(
       'off-canvas-overlay'
     )}
-      onClick={() => props.setActive(false)}
+      onClick={() => props.store.setActive(false)}
     />
   );
 }

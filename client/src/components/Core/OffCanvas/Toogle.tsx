@@ -4,9 +4,10 @@ import styles from './OffCanvas.module.scss';
 
 import { Icon } from '../Icon';
 import { Button } from '../Button';
+import { OffCanvasStore } from './OffCanvas';
 
 export type ToogleProps = {
-  setActive?: (active: boolean) => void;
+  store: OffCanvasStore
 };
 
 export const Toogle = (props: ToogleProps) => {
@@ -14,7 +15,7 @@ export const Toogle = (props: ToogleProps) => {
     <Button.Link
       className={classNames.bind(styles)('off-canvas-toogle')}
       color="link"
-      onClick={() => props.setActive(true)}
+      onClick={() => props.store.setActive(!props.store.active)}
       action>
       <Icon icon='fas fa-bars' />
     </Button.Link>

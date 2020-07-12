@@ -41,6 +41,7 @@
     "pg": "^8.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-use": "^15.3.2",
     "reflect-metadata": "^0.1.13",
     "superagent": "^5.2.2",
     "timeago.js": "^4.0.2",
