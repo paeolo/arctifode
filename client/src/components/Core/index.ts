@@ -5,6 +5,7 @@ export * from './Form';
 export * from './Grid';
 export * from './Icon';
 export * from './Menu';
+export * from './Nav';
 export * from './Navbar';
 export * from './OffCanvas';
 export * from './HtmlHead';

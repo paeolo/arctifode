@@ -14,7 +14,7 @@
   min-width: 10rem;
   overflow-y: auto;
   z-index: $zindex-2;
-  background: #fafafa;
+  background: $bg-color;
   box-shadow: inset -1px 0 0 #dfdfdf;
   transition: transform .25s;
 }

@@ -22,7 +22,7 @@ export const Avatar: React.FC<AvatarProps> = props => {
         'custom',
         {
           [`avatar-${props.size}`]: props.size,
-          'mr-1': props.marginRight === "small",
+          'mr-2': props.marginRight === "small",
           'mr-3': props.marginRight === "normal"
         }
       )}
