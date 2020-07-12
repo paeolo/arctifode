@@ -29,7 +29,7 @@ class MainDocument extends Document {
     return (
       <Html>
         <Head />
-        <body>
+        <body className='preload'>
           <Main />
           <NextScript />
         </body>
@@ -38,4 +38,4 @@ class MainDocument extends Document {
   }
 }
 
-export default MainDocument
+export default MainDocument;

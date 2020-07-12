@@ -5,14 +5,15 @@ import { ProjectPage } from "@components/Pages";
 import { WithLocale, getLocaleProps } from "@components/I18n";
 import { WithAuthentication, getAuthenticationProps } from "@components/Authentication";
 import { HtmlHead } from "@components/Core";
-import { Topbar } from "@components/Topbar";
+import { WithTopbar } from "@components/Topbar";
 
 const Index = () => {
   return (
     <React.Fragment>
       <HtmlHead />
-      <Topbar />
-      <ProjectPage />
+      <WithTopbar>
+        <ProjectPage />
+      </WithTopbar>
     </React.Fragment>
   );
 }

@@ -24,6 +24,7 @@ export type ButtonBaseProps = {
   tooltip?: string;
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   children?: React.ReactNode;
+  className?: string;
 };
 
 export const ButtonBase = <T extends object>(Component: React.FC<any>) =>
@@ -40,6 +41,7 @@ export const ButtonBase = <T extends object>(Component: React.FC<any>) =>
       circle,
       cross,
       tooltip,
+      className,
       ...rest
     } = props;
 
@@ -62,7 +64,8 @@ export const ButtonBase = <T extends object>(Component: React.FC<any>) =>
             'tooltip-right': tooltip && position === "left",
             'mx-1': props.marginX === "small",
             'mx-3': props.marginX === "normal"
-          }
+          },
+          className
         )}
         data-tooltip={tooltip}
         {...rest} />

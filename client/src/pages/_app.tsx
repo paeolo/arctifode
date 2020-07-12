@@ -28,7 +28,15 @@ AppInit();
 export default ({ Component, pageProps }: AppProps) => {
 
   const userStore = useInjection<UserStore>(StoresBindings.USER);
-  useEffect(() => { initInterval() }, []);
+  useEffect(() => {
+    removePreload();
+    initInterval();
+  }, []);
+
+  function removePreload() {
+    const node = document.querySelector('.preload');
+    node.classList.remove('preload');
+  }
 
   async function initInterval() {
 

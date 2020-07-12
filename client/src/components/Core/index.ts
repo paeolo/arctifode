@@ -6,6 +6,7 @@ export * from './Grid';
 export * from './Icon';
 export * from './Menu';
 export * from './Navbar';
+export * from './OffCanvas';
 export * from './HtmlHead';
 export * from './Toast';
 export * from './Typography';

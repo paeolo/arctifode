@@ -10,3 +10,12 @@
 @import './spectre.css/typography';
 @import './spectre.css/animations';
 @import './spectre.css/utilities';
+
+.preload * {
+  $none: none !important;
+  transition: $none;
+  -webkit-transition: $none;
+  -moz-transition: $none;
+  -ms-transition: $none;
+  -o-transition: $none;
+}

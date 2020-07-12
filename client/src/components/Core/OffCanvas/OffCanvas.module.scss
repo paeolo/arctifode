@@ -1,0 +1,67 @@
+@import '../../../assets/sass/variables.scss';
+@import '../../../assets/sass/spectre.css/mixins';
+
+.off-canvas-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: nowrap;
+}
+
+.off-canvas-sidebar {
+  position: relative;
+  min-width: 10rem;
+  overflow-y: auto;
+  z-index: $zindex-2;
+  background: #fafafa;
+  box-shadow: inset -1px 0 0 #dfdfdf;
+  transition: transform .25s;
+}
+
+.off-canvas-content {
+  position: relative;
+  height: 100%;
+  width:100%;
+  }
+
+.off-canvas-overlay {
+  display: none;
+  position: fixed;
+  height: 100%;
+  width:100%;
+  border-color: transparent;
+  border-radius: 0;
+  background: rgba($dark-color, .3);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@include from($size-lg) {
+  .off-canvas-toogle {
+    display: none;
+  }
+}
+
+@include until($size-lg) {
+
+  .off-canvas-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .off-canvas-content {
+    position: fixed;
+  }
+
+  .active-sidebar {
+    .off-canvas-sidebar {
+      transform: translateX(0);
+    }
+    .off-canvas-overlay {
+      display: block;
+      z-index: $zindex-1;
+    }
+  }
+}
