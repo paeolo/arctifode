@@ -1,5 +1,6 @@
 export * from './Avatar';
 export * from './Bar';
+export * from './Breadcrumb';
 export * from './Button';
 export * from './Form';
 export * from './Grid';

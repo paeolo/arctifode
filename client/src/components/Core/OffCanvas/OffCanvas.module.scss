@@ -21,11 +21,6 @@
   transition: transform .25s;
 }
 
-.off-canvas-header {
-  padding: .5rem .5rem;
-  width: 100%;
-}
-
 .off-canvas-content {
   position: fixed;
   height: 100%;
@@ -48,9 +43,6 @@
 
 @include from($size-lg) {
   .off-canvas-toogle {
-    display: none;
-  }
-  .off-canvas-header {
     display: none;
   }
   .off-canvas-content {

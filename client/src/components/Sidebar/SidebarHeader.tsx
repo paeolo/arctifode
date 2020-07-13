@@ -5,11 +5,11 @@ import styles from './Sidebar.module.scss';
 import { Avatar } from '@components/Core';
 import { Link } from '@components/I18n';
 
-type HeaderProps = {
+type SidebarHeaderProps = {
   label: string;
 }
 
-export const Header = (props: HeaderProps) => {
+export const SidebarHeader = (props: SidebarHeaderProps) => {
   return (
     <Link href={`/projects/1`}>
       <a className={classNames.bind(styles)(

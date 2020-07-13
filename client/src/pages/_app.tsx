@@ -35,7 +35,8 @@ export default ({ Component, pageProps }: AppProps) => {
 
   function removePreload() {
     const node = document.querySelector('.preload');
-    node.classList.remove('preload');
+    if (!!node)
+      node.classList.remove('preload');
   }
 
   async function initInterval() {
