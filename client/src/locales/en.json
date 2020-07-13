@@ -8,6 +8,16 @@
     "signout": "Sign out",
     "register": "Register"
   },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "artifacts": "Artifacts",
+    "releases": "Releases",
+    "environments": "Environments",
+    "deployments": "Deployments",
+    "tasks": "Tasks",
+    "members": "Members",
+    "settings": "Settings"
+  },
   "index": {
     "projects": "Projects",
     "please_connect": "Please connect"

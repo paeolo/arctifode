@@ -1,23 +1,30 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import { Project, ProjectController, withCookie, obtain } from "@openapi";
 
-import { IndexPage } from "@components/Pages";
+import { TasksPage } from "@components/Pages";
+import { WithSidebar, SidebarItem } from '@components/Sidebar';
 import { WithLocale, getLocaleProps } from "@components/I18n";
 import { WithAuthentication, getAuthenticationProps } from "@components/Authentication";
 import { HtmlHead } from "@components/Core";
-import { Topbar } from "@components/Topbar";
+import { WithTopbar } from "@components/Topbar";
+import { withCookie, ProjectController, Project } from "@openapi";
 
 type IndexProps = {
-  projects: Project[];
+  project: Project;
 }
 
 const Index = (props: IndexProps) => {
   return (
     <React.Fragment>
       <HtmlHead />
-      <Topbar />
-      <IndexPage projects={props.projects} />
+      <WithTopbar>
+        <WithSidebar
+          label={props.project.name}
+          id={props.project.id}
+          active={SidebarItem.TASKS}>
+          <TasksPage project={props.project} />
+        </WithSidebar>
+      </WithTopbar>
     </React.Fragment>
   );
 }
@@ -30,17 +37,12 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const localeProps = await getLocaleProps(lang);
   const authenticationProps = await getAuthenticationProps(context);
   const cookie = context.req.headers.cookie;
-  let projects = [];
-  try {
-    if (authenticationProps.currentUser !== null)
-      projects = await withCookie(cookie)(ProjectController.obtainAll());
-    else
-      projects = await obtain(ProjectController.obtainAllPublic());
-  } catch (error) { }
-
+  const project = await withCookie(cookie)(
+    ProjectController.obtainOne(Number.parseInt(context.params.id as string))
+  );
   return {
     props: {
-      projects: projects,
+      project: project,
       ...authenticationProps,
       ...localeProps
     }

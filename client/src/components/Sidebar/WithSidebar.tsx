@@ -4,8 +4,15 @@ import { useLocalStore } from 'mobx-react-lite';
 
 import { Sidebar } from './Sidebar';
 import { CanvasHeader } from './CanvasHeader';
+import { SidebarItem } from './types';
 
-export const WithSidebar: React.FC = props => {
+type WithSidebarProps = {
+  label: string;
+  id: number;
+  active: SidebarItem;
+}
+
+export const WithSidebar: React.FC<WithSidebarProps> = props => {
 
   const store = useLocalStore(() => ({
     active: false,
@@ -15,12 +22,18 @@ export const WithSidebar: React.FC = props => {
   return (
     <OffCanvas store={store}>
       <OffCanvas.Sidebar>
-        <Sidebar />
+        <Sidebar
+          label={props.label}
+          id={props.id}
+          active={props.active} />
       </OffCanvas.Sidebar>
       <OffCanvas.Overlay store={store} />
       <OffCanvas.Content>
         <Container maxWidth='lg' paddingX='medium'>
-          <CanvasHeader store={store} />
+          <CanvasHeader
+            label={props.label}
+            active={props.active}
+            store={store} />
           {props.children}
         </Container>
       </OffCanvas.Content>

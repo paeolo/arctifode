@@ -8,6 +8,16 @@
     "signout": "Déconnexion",
     "register": "Inscription"
   },
+  "sidebar": {
+    "dashboard": "Tableau de bord",
+    "artifacts": "Artefacts",
+    "releases": "Releases",
+    "environments": "Environnements",
+    "deployments": "Déploiements",
+    "tasks": "Tâches",
+    "members": "Membres",
+    "settings": "Paramètres"
+  },
   "index": {
     "projects": "Projets",
     "please_connect": "Veuillez vous connecter"

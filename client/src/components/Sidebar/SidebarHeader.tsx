@@ -13,15 +13,16 @@ export const SidebarHeader = (props: SidebarHeaderProps) => {
   return (
     <Link href={`/projects/1`}>
       <a className={classNames.bind(styles)(
-        'item',
-        'header'
+        'sidebar-header',
+        'sidebar-item',
       )} >
-        <Avatar label="M" marginRight="small" />
+        <div>
+          <Avatar label="M" marginRight="small" />
+        </div>
         <span>
           {props.label}
         </span>
       </a >
     </Link>
-
   );
 }

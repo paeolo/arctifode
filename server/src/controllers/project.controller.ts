@@ -14,6 +14,7 @@ import {
   put,
   requestBody,
   get,
+  param,
 } from '@loopback/rest';
 
 import {
@@ -66,15 +67,31 @@ export class ProjectController {
   }
 
   /**
+  ** Obtain one specific project
+  **/
+  @get(
+    '/obtainOne',
+    ReturnsArray(Project, 'A project')
+  )
+  @logger(LOGGER_LEVEL.INFO)
+  async obtainOne(
+    @param.query.number('id', { required: true }) id: number
+  ) {
+    return await this.projects.findOneOrFail({
+      where: { id: id }
+    });
+  }
+
+  /**
   ** Obtain an array of projects for user
   **/
   @get(
-    '/obtain',
+    '/obtainAll',
     ReturnsArray(Project, 'An array of projects').withSecurity()
   )
   @authenticate('basic')
   @logger(LOGGER_LEVEL.DEBUG)
-  async obtain(
+  async obtainAll(
     @inject(SecurityBindings.USER) currentUserProfile: UserProfile
   ) {
     return await this.projects.find({
@@ -86,11 +103,11 @@ export class ProjectController {
   ** Obtain an array of public projects
   **/
   @get(
-    '/obtainPublic',
+    '/obtainAllPublic',
     ReturnsArray(Project, 'An array of public projects')
   )
   @logger(LOGGER_LEVEL.DEBUG)
-  async obtainPublic() {
+  async obtainAllPublic() {
     return await this.projects.find({
       where: {
         visibility: Visibility.PUBLIC
