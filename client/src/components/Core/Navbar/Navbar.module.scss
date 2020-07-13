@@ -5,6 +5,7 @@
 
 .custom {
   height: $navbar-height;
+  min-height: $navbar-height;
   box-sizing: border-box;
   z-index: 300;
   padding: 0 1rem;

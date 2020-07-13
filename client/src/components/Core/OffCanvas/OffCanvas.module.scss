@@ -10,10 +10,12 @@
 }
 
 .off-canvas-sidebar {
-  position: relative;
-  min-width: 10rem;
-  overflow-y: auto;
+  position: absolute;
+  width: $sidebar-width;
+  min-width: $sidebar-width;
+  height: 100%;
   z-index: $zindex-2;
+  overflow-y: auto;
   background: $bg-color;
   box-shadow: inset -1px 0 0 #dfdfdf;
   transition: transform .25s;
@@ -25,7 +27,7 @@
 }
 
 .off-canvas-content {
-  position: relative;
+  position: fixed;
   height: 100%;
   width:100%;
   }
@@ -51,16 +53,15 @@
   .off-canvas-header {
     display: none;
   }
+  .off-canvas-content {
+    padding-left:  $sidebar-width;
+  }
 }
 
 @include until($size-lg) {
 
   .off-canvas-sidebar {
     transform: translateX(-100%);
-  }
-
-  .off-canvas-content {
-    position: fixed;
   }
 
   .active-sidebar {
