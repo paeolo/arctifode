@@ -31,13 +31,13 @@
   }
 
 .off-canvas-overlay {
-  display: none;
+  visibility: hidden;
   position: fixed;
   height: 100%;
   width:100%;
   border-color: transparent;
   border-radius: 0;
-  background: rgba($dark-color, .3);
+  transition: background .25s ease;
 
   &:hover {
     cursor: pointer;
@@ -68,7 +68,8 @@
       transform: translateX(0);
     }
     .off-canvas-overlay {
-      display: block;
+      visibility: visible;
+      background: rgba($dark-color, .3);
       z-index: $zindex-1;
     }
   }
