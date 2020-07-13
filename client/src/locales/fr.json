@@ -20,7 +20,8 @@
   },
   "index": {
     "projects": "Projets",
-    "please_connect": "Veuillez vous connecter"
+    "please_connect": "Veuillez vous connecter",
+    "no_projects": "Il n'y pas de projets"
   },
   "signin": {
     "title": "Connexion",

@@ -20,7 +20,8 @@
   },
   "index": {
     "projects": "Projects",
-    "please_connect": "Please connect"
+    "please_connect": "Please connect",
+    "no_projects": "You have no projects"
   },
   "signin": {
     "title": "Sign in",

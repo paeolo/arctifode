@@ -2,7 +2,7 @@ import React from 'react';
 import { UserStore } from '@stores';
 import { useTranslate, useInjection } from '@hooks';
 
-import { Container, Button, Icon, H4 } from '@components/Core';
+import { Container, Button, Icon, H4, Empty } from '@components/Core';
 import { Header, Divider } from '@components/Layout';
 import { Link } from '@components/I18n';
 
@@ -46,7 +46,17 @@ export const IndexPage = (props: IndexPageProps) => {
           </Button.Link>
         }
         <Divider />
-        <List projects={props.projects} />
+        {props.projects.length > 0 && < List projects={props.projects} />}
+        {props.projects.length == 0 &&
+          <Empty>
+            <Empty.Icon>
+              <Icon icon='fas fa-cubes' size='huge' />
+            </Empty.Icon>
+            <Empty.Title>
+              {t('index.no_projects')}
+            </Empty.Title>
+          </Empty>
+        }
       </Container>
     </React.Fragment >
   );

@@ -73,7 +73,7 @@ export class ProjectController {
     '/obtainOne',
     ReturnsArray(Project, 'A project')
   )
-  @logger(LOGGER_LEVEL.INFO)
+  @logger(LOGGER_LEVEL.DEBUG)
   async obtainOne(
     @param.query.number('id', { required: true }) id: number
   ) {

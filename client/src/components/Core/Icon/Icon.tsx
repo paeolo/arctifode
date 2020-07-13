@@ -6,13 +6,14 @@ import styles from './Icon.module.scss';
 export const IconTypes = {
   sizes: ["normal", "medium", "large", "huge"] as const,
   directions: ["left", "right", "both"] as const,
+  colors: ["primary", "secondary"] as const
 };
 
 export type IconProps = {
   size?: typeof IconTypes["sizes"][number];
   margin?: typeof IconTypes["directions"][number];
+  color?: typeof IconTypes["colors"][number];
   icon?: string;
-  secondary?: boolean;
 };
 
 export const Icon: React.FC<IconProps> = props => {
@@ -21,7 +22,7 @@ export const Icon: React.FC<IconProps> = props => {
     size,
     margin,
     icon,
-    secondary,
+    color,
     ...rest
   } = props;
 
@@ -31,7 +32,7 @@ export const Icon: React.FC<IconProps> = props => {
       'fa-3x': props.size === "large",
       'fa-4x': props.size === "huge",
       [`margin-${margin}`]: margin,
-      'secondary': secondary
+      [`color-${color}`]: props.color
     },
     icon
   )}
