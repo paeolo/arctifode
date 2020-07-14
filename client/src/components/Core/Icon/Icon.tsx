@@ -1,44 +1,39 @@
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import React from "react";
+import React from 'react';
 
-import { DefaultsType } from "../types";
+import classNames from 'classnames/bind';
+import styles from './Icon.module.scss';
+import { WithModifiers } from '../Modifier';
 
 export const IconTypes = {
-  alignments: ['left', 'right'] as const,
-  sizes: ['small', 'medium', 'large'] as const,
+  sizes: ["normal", "medium", "large", "huge"] as const,
 };
 
 export type IconProps = {
-  color?: typeof DefaultsType["colors"][number];
-  align?: typeof IconTypes['alignments'][number];
-  size?: typeof IconTypes['sizes'][number];
   className?: string;
-  icon: string;
+  size?: typeof IconTypes["sizes"][number];
+  icon?: string;
 };
 
-export const Icon: React.FC<IconProps> = props => {
-  return (
-    <span
-      className={classNames(
-        "icon",
-        props.className,
-        {
-          [`has-text-${props.color}`]: props.color,
-          [`is-${props.align}`]: props.align,
-          [`is-${props.size}`]: props.size,
-        },
-      )}>
-      <i className={props.icon}>
-        {props.children}
-      </i>
-    </span>
-  );
+const IconFC: React.FC<IconProps> = props => {
+
+  const {
+    className,
+    size,
+    icon,
+    ...rest
+  } = props;
+
+  return <i className={classNames.bind(styles)(
+    {
+      'fa-2x': props.size === "medium",
+      'fa-3x': props.size === "large",
+      'fa-4x': props.size === "huge",
+    },
+    icon,
+    className
+  )}
+    {...rest}
+  />
 }
 
-Icon.displayName = "Icon";
-Icon.propTypes = {
-  color: PropTypes.oneOf(DefaultsType["colors"]),
-  align: PropTypes.oneOf(IconTypes['alignments']),
-  size: PropTypes.oneOf(IconTypes['sizes'])
-};
+export const Icon = WithModifiers<IconProps>(IconFC);

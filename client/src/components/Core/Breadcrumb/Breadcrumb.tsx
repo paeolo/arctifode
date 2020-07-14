@@ -1,47 +1,22 @@
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import React from "react";
+import React from 'react';
+import classNames from 'classnames/bind';
+import styles from './Breadcrumb.module.scss';
 
-import { BreadcrumbItem } from "./BreadcrumbItem";
+import { BreadcrumbItem } from './Item';
 
-export const BreadcrumbTypes = {
-  alignments: ['centered', 'right'] as const,
-  separators: ['arrow', 'bullet', 'dot', 'succeeds'] as const,
-  sizes: ['small', 'medium', 'large'] as const,
-};
+export const BreadcrumbFC: React.FC = props => {
 
-export type BreadcrumbProps = {
-  align?: typeof BreadcrumbTypes['alignments'][number];
-  separator?: typeof BreadcrumbTypes['separators'][number];
-  size?: typeof BreadcrumbTypes['sizes'][number];
-  className?: string;
-};
-
-const BreadcrumbElement: React.FC<BreadcrumbProps> = props => {
   return (
-    <nav
-      className={classNames("breadcrumb", props.className,
-        {
-          [`has-${props.separator}-separator`]: props.separator,
-          [`is-${props.align}`]: props.align,
-          [`is-${props.size}`]: props.size,
-        },
-      )}>
-      <ul>{props.children}</ul>
-    </nav>
+    <ul className={classNames.bind(styles)('breadcrumb')}>
+      {props.children}
+    </ul>
   );
-};
-
-BreadcrumbElement.propTypes = {
-  align: PropTypes.oneOf(BreadcrumbTypes['alignments']),
-  separator: PropTypes.oneOf(BreadcrumbTypes['separators']),
-  size: PropTypes.oneOf(BreadcrumbTypes['sizes']),
-};
+}
 
 export const Breadcrumb = Object.assign(
-  BreadcrumbElement,
+  BreadcrumbFC,
   {
     displayName: 'Breadcrumb',
-    Item: BreadcrumbItem
-  },
+    Item: BreadcrumbItem,
+  }
 );

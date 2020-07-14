@@ -1,87 +1,20 @@
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import React, { ComponentProps } from "react";
+import React from 'react';
 
-import { ButtonGroup } from "./ButtonGroup";
-import { DefaultsType } from '../types';
+import { ButtonBase } from './Base';
+import { ButtonGroupFC } from './Group';
 
-export const ButtonTypes = {
-  sizes: ["small", "normal", "medium", "large"] as const,
-  states: ["hovered", "focused", "active", "loading"] as const,
-};
-
-export type ButtonProps = {
-  color?: typeof DefaultsType["colors"][number];
-  fullwidth?: boolean;
-  inverted?: boolean;
-  outlined?: boolean;
-  rounded?: boolean;
-  selected?: boolean;
-  size?: typeof ButtonTypes["sizes"][number];
-  state?: typeof ButtonTypes["states"][number];
-  static?: boolean;
-  text?: boolean;
-  className?: string;
-  onClick?: () => void
-} & ComponentProps<'button'>;
-
-export const ButtonComponent: React.FC<ButtonProps> = props => {
-
-  const {
-    className,
-    color,
-    fullwidth,
-    inverted,
-    outlined,
-    rounded,
-    selected,
-    size,
-    state,
-    static: isStatic,
-    text,
-    onClick,
-    ...rest
-  } = props;
-
-  return (
-    <button
-      className={classNames("button", className,
-        {
-          [`is-${color}`]: color,
-          "is-fullwidth": fullwidth,
-          "is-inverted": inverted,
-          "is-outlined": outlined,
-          "is-rounded": rounded,
-          "is-selected": selected,
-          [`is-${size}`]: size,
-          [`is-${state}`]: state,
-          "is-static": isStatic,
-          "is-text": text,
-        },
-      )}
-      onClick={onClick}
-      {...rest}
-    />
-  );
-}
+const ButtonFC = ButtonBase<{}>(props => <button type="button" {...props} />);
+const ButtonLinkFC = ButtonBase<{ href?: string }>(props => <a {...props} />);
+const ButtonResetFC = ButtonBase<{}>(props => <button type="reset" {...props} />);
+const ButtonSubmitFC = ButtonBase<{}>(props => <button type="submit" {...props} />);
 
 export const Button = Object.assign(
-  ButtonComponent,
-  { Group: ButtonGroup },
+  ButtonFC,
+  {
+    displayName: 'Button',
+    Group: ButtonGroupFC,
+    Link: ButtonLinkFC,
+    Reset: ButtonResetFC,
+    Submit: ButtonSubmitFC,
+  }
 );
-
-const propTypes = {
-  color: PropTypes.oneOf(DefaultsType["colors"]),
-  fullwidth: PropTypes.bool,
-  inverted: PropTypes.bool,
-  outlined: PropTypes.bool,
-  rounded: PropTypes.bool,
-  selected: PropTypes.bool,
-  size: PropTypes.oneOf(ButtonTypes["sizes"]),
-  state: PropTypes.oneOf(ButtonTypes["states"]),
-  static: PropTypes.bool,
-  text: PropTypes.bool,
-};
-
-Button.displayName = "Button";
-Button.propTypes = propTypes;

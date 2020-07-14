@@ -1,0 +1,27 @@
+@import '../../../assets/sass/variables.scss';
+@import '../../../assets/sass/spectre.css/mixins';
+
+.list {
+  margin: 0px 0;
+}
+
+.list-item {
+  padding: 12px 0;
+  border-bottom: 2px solid #eee;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.text-primary {
+  color: $body-font-color;
+
+  &:hover, &:visited, &:active {
+    color: $body-font-color
+  }
+}
+
+.text-secondary {
+  color: #707070
+}

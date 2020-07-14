@@ -4,20 +4,19 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { RegisterPage } from "@components/Pages";
 import { WithLocale, getLocaleProps, getLocalePaths } from "@components/I18n";
 import { HtmlHead } from "@components/Core";
-import { WithNavbar } from "@components/Navbar";
+import { Topbar } from "@components/Topbar";
 
-const Index = () => {
+const Register = () => {
   return (
     <React.Fragment>
       <HtmlHead />
-      <WithNavbar>
-        <RegisterPage />
-      </WithNavbar>
+      <Topbar />
+      <RegisterPage />
     </React.Fragment>
   );
 }
 
-export default WithLocale(Index);
+export default WithLocale(Register);
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const lang: string = params.lang as string;

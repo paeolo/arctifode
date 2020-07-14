@@ -11,12 +11,21 @@
     ],
     "baseUrl": "src",
     "paths": {
-      "@openapi/*": [
-        "../../openapi/*"
+      "@openapi": [
+        "../../openapi"
+      ],
+      "@hooks": [
+        "./hooks"
+      ],
+      "@stores": [
+        "./stores"
+      ],
+      "@container": [
+        "./container"
       ],
       "@components/*": [
         "./components/*"
-      ]
+      ],
     },
     "allowJs": true,
     "skipLibCheck": true,

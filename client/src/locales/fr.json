@@ -1,11 +1,81 @@
 {
   "header": {
-    "title": "Mon site",
-    "description": "Ma description"
+    "title": "Arctifode",
+    "description": "Une bibliothèque d'artifact légère. Simplifiez la livraison continue."
   },
   "navbar": {
     "signin": "Connexion",
     "signout": "Déconnexion",
     "register": "Inscription"
+  },
+  "sidebar": {
+    "dashboard": "Tableau de bord",
+    "artifacts": "Artefacts",
+    "releases": "Releases",
+    "environments": "Environnements",
+    "deployments": "Déploiements",
+    "tasks": "Tâches",
+    "members": "Membres",
+    "settings": "Paramètres"
+  },
+  "index": {
+    "projects": "Projets",
+    "please_connect": "Veuillez vous connecter",
+    "no_projects": "Il n'y pas de projets"
+  },
+  "signin": {
+    "title": "Connexion",
+    "description": "Renseigne tes identifiants...",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "remember": "Se souvenir de moi",
+    "error": "Identifiant ou mot de passe incorrect"
+  },
+  "register": {
+    "title": "Inscription",
+    "description": "Remplissez le formulaire...",
+    "username": "Nom d'utilisateur",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "password": "Mot de passe",
+    "error": "Nom d'utilisateur déjà pris"
+  },
+  "new_project": {
+    "title": "Créer un projet",
+    "project_name": "Nom du projet",
+    "project_description": "Description du projet",
+    "project_repository": "Dépôt du code",
+    "placeholder_name": "Mon projet",
+    "placeholder_description": "Ma description"
+  },
+  "artifacts": {
+    "description": "Gère les artefacts de l'application"
+  },
+  "releases": {
+    "description": "Gère les releases de l'application"
+  },
+  "environments": {
+    "description": "Gère les environnements de l'application"
+  },
+  "deployments": {
+    "description": "Gère les déploiements de l'application"
+  },
+  "visibility": {
+    "title": "Niveau de visibilité",
+    "private": "Privé",
+    "public": "Public"
+  },
+  "common": {
+    "cancel": "Annuler",
+    "submit": "Soumettre",
+    "success": "C'est fait!",
+    "error": "Une erreur est survenue",
+    "updated": "mis à jour"
+  },
+  "validation": {
+    "default": "ce champ est invalide",
+    "required": "ce champ est requis",
+    "min": "doit contenir au moins %{min} caractères",
+    "max": "doit contenir au plus %{max} caractères"
   }
 }

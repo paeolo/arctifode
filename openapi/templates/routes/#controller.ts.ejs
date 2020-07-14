@@ -22,6 +22,9 @@ const getContentType = content => {
     let schema = content['application/json'].schema;
     returnType = getSchemaType(schema);
   }
+  else if (contentType === 'multipart/form-data') {
+    returnType = 'FormData'
+  }
   return [contentType, returnType];
 }
 -%>

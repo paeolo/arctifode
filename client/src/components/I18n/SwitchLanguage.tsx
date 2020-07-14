@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { useRouter } from 'next/router'
+import React from 'react';
 import ms from 'ms';
+import { useRouter } from 'next/router'
 
-import { I18nContext } from './I18nProvider';
 import { cookieName } from '../../locales';
+import { useTranslate } from '../../hooks';
 
 interface SwitchLanguageProps {
   locale: string;
@@ -14,7 +14,7 @@ interface SwitchLanguageProps {
 export const SwitchLanguage: React.FC<SwitchLanguageProps> = props => {
 
   const router = useRouter();
-  const locale = useContext(I18nContext).locale();
+  const { locale } = useTranslate();
 
   const handleClick = async () => {
     var expires = new Date(Date.now() + ms('1 year')).toUTCString();

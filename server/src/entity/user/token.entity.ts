@@ -2,12 +2,11 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToOne,
-  JoinColumn
+  ManyToOne
 } from "typeorm";
 
 import { TokenType } from '../../components/jwt';
-import { User } from '../user';
+import { User } from './user.entity';
 
 @Entity()
 export class Token {
@@ -26,9 +25,8 @@ export class Token {
   expiresIn: Date;
 
   @Column({ nullable: true })
-  userId: number;
+  userId?: number;
 
-  @ManyToOne(type => User, user => user.tokens)
-  @JoinColumn()
+  @ManyToOne(() => User, user => user.tokens)
   user: User;
 }

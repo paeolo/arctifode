@@ -15,7 +15,7 @@ import {
   get
 } from '@loopback/rest';
 import { model } from '@loopback/repository';
-import { SecurityBindings, UserProfile } from '@loopback/security';
+import { SecurityBindings } from '@loopback/security';
 import { Repository } from 'typeorm';
 import { validate } from 'class-validator'
 
@@ -29,7 +29,7 @@ import {
   TokenPayload,
 } from '../components';
 import { TokenType, UserRole } from '../components/jwt';
-import { User, UserCredentials } from '../entity';
+import { User, UserCredentials, UserProfile } from '../entity';
 import { required, Returns, ReturnsWithCode, PGErrorCode, ReturnsWithType, ReturnsArray } from '../utils';
 import { authorize } from '@loopback/authorization';
 
@@ -37,6 +37,10 @@ import { authorize } from '@loopback/authorization';
 export class NewUser {
   @required({ jsonSchema: { examples: ['john.smith'] } })
   username: string;
+  @required({ jsonSchema: { examples: ['John'] } })
+  firstname: string;
+  @required({ jsonSchema: { examples: ['Smith'] } })
+  lastname: string;
   @required({ jsonSchema: { minLength: 6 } })
   password: string;
 }
@@ -54,6 +58,7 @@ class LoginCredentials {
 export class UserController {
   constructor(
     @typeorm.repository(User) private users: Repository<User>,
+    @typeorm.repository(UserProfile) private profiles: Repository<UserProfile>,
     @typeorm.repository(UserCredentials) private credentials: Repository<UserCredentials>,
     @inject(JWTBindings.TOKEN_SERVICE) private jwt: JWTService,
     @inject(JWTBindings.PASSWORD_HASHER) private hasher: PasswordHasher
@@ -71,11 +76,19 @@ export class UserController {
     @requestBody() newUser: NewUser
   ) {
     const password = await this.hasher.hash(newUser.password);
-    let credentials = this.credentials.create({ password: password });
+    const credentials = this.credentials.create({
+      password: password
+    });
+    const profile = this.profiles.create({
+      firstName: newUser.firstname,
+      lastName: newUser.lastname
+    });
+
     try {
       let user = this.users.create({
         username: newUser.username,
         credentials: credentials,
+        profile: profile
       });
 
       const errors = await validate(user);
@@ -176,7 +189,7 @@ export class UserController {
     @inject(SecurityBindings.USER) currentUserProfile: UserProfile
   ) {
     let userId: number = currentUserProfile.id;
-    const foundUser = await this.users.findOne({
+    const foundUser = await this.users.findOneOrFail({
       where: { id: userId },
     });
     return foundUser;

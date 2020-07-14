@@ -1,0 +1,34 @@
+{
+  "ago": {
+    "moment": "à l'instant",
+    "seconds": "il y a %s secondes",
+    "minute": "il y a 1 minute",
+    "minutes": "il y a %s minutes",
+    "hour": "il y a 1 heure",
+    "hours": "il y a %s heures",
+    "day": "il y a 1 jour",
+    "days": "il y a %s jours",
+    "week": "il y a 1 semaine",
+    "weeks": "il y a %s semaines",
+    "month": "il y a 1 mois",
+    "months": "il y a %s mois",
+    "year": "il y a 1 an",
+    "years": "il y a %s ans"
+  },
+  "in": {
+    "moment": "dans un instant",
+    "seconds": "dans %s secondes",
+    "minute": "dans 1 minute",
+    "minutes": "dans %s minutes",
+    "hour": "dans 1 heure",
+    "hours": "dans %s heures",
+    "day": "dans 1 jour",
+    "days": "dans %s jours",
+    "week": "dans 1 semaine",
+    "weeks": "dans %s semaines",
+    "month": "dans 1 mois",
+    "months": "dans %s mois",
+    "year": "dans 1 an",
+    "years": "dans %s ans"
+  }
+}

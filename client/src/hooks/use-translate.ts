@@ -8,9 +8,8 @@ type I18n = {
 }
 
 export function useTranslate(): I18n {
-  const polyglot = useContext(I18nContext);
+  const polyglot = useContext(I18nContext).polyglot;
   const locale = polyglot.locale();
-  polyglot.t
   const t = polyglot.t.bind(polyglot);
   return { locale, t };
 }

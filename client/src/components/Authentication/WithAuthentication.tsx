@@ -2,7 +2,7 @@ import React from 'react';
 import Error from 'next/error';
 
 import { NextPage } from 'next';
-import { User, UserRole } from '@openapi/.';
+import { User, UserRole } from '@openapi';
 import { useInjection } from '../../hooks';
 import { UserStore } from '../../stores';
 import { StoresBindings } from '../../container';

@@ -4,6 +4,7 @@ import { LocaleProps } from './WithLocale';
 export * from './WithLocale';
 export * from './Link';
 export * from './SwitchLanguage';
+export * from './types';
 
 export type Locale = typeof locales[number]
 
@@ -12,15 +13,20 @@ export async function getLocaleProps(locale: string): Promise<LocaleProps> {
   if (!locales.includes(locale)) {
     return {
       locale: null,
-      phrases: null
+      polyglot: null,
+      timeAgo: null
     }
   }
 
-  const phrases = await import(`../../locales/${locale}.json`)
-    .then(m => m.default)
+  const polyglotPhrases = await import(`../../locales/${locale}.json`)
+    .then(m => m.default);
+  const timeAgoPhrases = await import(`../../locales/timeago/${locale}.json`)
+    .then(m => m.default);
+
   return {
     locale: locale,
-    phrases: phrases
+    polyglot: { phrases: polyglotPhrases },
+    timeAgo: { phrases: timeAgoPhrases }
   }
 }
 

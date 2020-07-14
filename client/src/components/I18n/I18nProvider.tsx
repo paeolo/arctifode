@@ -1,66 +1,49 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Polyglot, { PolyglotOptions } from 'node-polyglot';
+import Polyglot from 'node-polyglot';
+import { format, register } from 'timeago.js';
 
 import { defaultLocale } from '../../locales';
+import { getTimeAgoLocale, initYup } from './utils';
 
 export const I18nContext = React.createContext(
-  new Polyglot({
-    locale: defaultLocale,
-    phrases: {}
-  })
+  {
+    polyglot: new Polyglot({
+      locale: defaultLocale,
+      phrases: {}
+    }),
+    timeAgo: undefined
+  }
 );
 
-export default class I18nProvider extends React.Component<PolyglotOptions> {
-
-  private readonly polyglot: Polyglot;
-
-  constructor(props: PolyglotOptions) {
-    super(props);
-
-    this.polyglot = new Polyglot({
-      locale: props.locale || defaultLocale,
-      phrases: props.phrases || {},
-      allowMissing: props.allowMissing,
-      onMissingKey: props.onMissingKey,
-      interpolation: props.interpolation,
-    })
+export type I18nProviderProps = {
+  locale: string;
+  polyglot: {
+    phrases: any
+  },
+  timeAgo: {
+    phrases: any
   }
+};
 
-  componentDidUpdate(props: PolyglotOptions) {
-    if (props.locale !== this.props.locale) {
-      this.polyglot.locale(this.props.locale)
-    }
+export const I18nProvider: React.FC<I18nProviderProps> = props => {
 
-    if (props.phrases !== this.props.phrases) {
-      this.polyglot.replace(this.props.phrases)
-    }
-  }
+  const polyglot = new Polyglot({
+    locale: props.locale || defaultLocale,
+    phrases: props.polyglot.phrases || {},
+  });
 
-  static propTypes = {
-    locale: PropTypes.string.isRequired,
-    allowMissing: PropTypes.bool,
-    onMissingKey: PropTypes.func,
-    interpolation: PropTypes.shape({
-      suffix: PropTypes.string,
-      prefix: PropTypes.string,
-    }),
-    children: PropTypes.element.isRequired,
-  };
+  initYup();
 
-  static defaultProps = {
-    allowMissing: false,
-    onMissingKey: undefined,
-    interpolation: undefined,
-  };
+  register(props.locale, getTimeAgoLocale(
+    props.timeAgo.phrases.ago,
+    props.timeAgo.phrases.in
+  ));
 
-  render() {
-    const { children } = this.props
+  const timeAgo = (date: Date) => format(date, props.locale);
 
-    return (
-      <I18nContext.Provider value={this.polyglot}>
-        {React.Children.only(children)}
-      </I18nContext.Provider>
-    )
-  }
+  return (
+    <I18nContext.Provider value={{ polyglot: polyglot, timeAgo: timeAgo }}>
+      {React.Children.only(props.children)}
+    </I18nContext.Provider>
+  );
 }

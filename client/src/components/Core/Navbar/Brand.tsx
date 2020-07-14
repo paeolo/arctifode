@@ -1,16 +1,20 @@
-import classNames from "classnames";
-import React from "react";
+import React from 'react';
 
-export type NavbarBrandProps = {
-  className?: string;
-}
+import classNames from 'classnames/bind';
+import styles from './Navbar.module.scss';
 
-export const NavbarBrand: React.FC<NavbarBrandProps> = props => {
+export type BrandProps = {
+  center?: boolean;
+  href?: string;
+};
+
+export const Brand: React.FC<BrandProps> = props => {
+
   return (
-    <div className={classNames("navbar-brand", props.className)}>
+    <a
+      href={props.href || '#'}
+      className={classNames.bind(styles)('navbar-brand')}>
       {props.children}
-    </div>
+    </a>
   );
 }
-
-NavbarBrand.displayName = "Navbar.Brand";

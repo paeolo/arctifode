@@ -1,6 +1,6 @@
 import { observable, action, computed } from 'mobx';
-import { obtain, UserController } from '@openapi/.';
-import { User, LoginCredentials, UserRole } from '@openapi/schemas';
+import { obtain, UserController } from '@openapi';
+import { User, LoginCredentials, UserRole } from '@openapi';
 import { injectable } from 'inversify';
 
 @injectable()

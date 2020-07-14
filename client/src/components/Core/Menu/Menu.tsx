@@ -1,25 +1,27 @@
-import classNames from "classnames";
-import React from "react";
+import React from 'react';
 
-import { MenuLabel } from "./MenuLabel";
-import { MenuList } from "./MenuList";
+import classNames from 'classnames/bind';
+import styles from './Menu.module.scss';
 
-interface MenuProps {
-  className?: string;
-  children?: React.ReactNode;
+import { MenuDivider } from './Divider';
+import { MenuDropdown } from './Dropdown';
+import { MenuItem } from './Item';
+
+export const MenuFC: React.FC = props => {
+
+  return (
+    <ul className={classNames.bind(styles)('menu')}>
+      {props.children}
+    </ul>
+  );
 }
 
 export const Menu = Object.assign(
-  (props: MenuProps) => {
-    return (
-      <aside className={classNames("menu", props.className)}>
-        {props.children}
-      </aside>
-    );
-  },
+  MenuFC,
   {
-    Label: MenuLabel,
-    List: MenuList,
-    displayName: "Menu",
-  },
+    displayName: 'Menu',
+    Divider: MenuDivider,
+    Dropdown: MenuDropdown,
+    Item: MenuItem,
+  }
 );

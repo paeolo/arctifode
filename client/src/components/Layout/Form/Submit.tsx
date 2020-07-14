@@ -1,23 +1,35 @@
-import React from 'react'
-import { Button, Field, Control } from "@components/Core"
+import React from 'react';
+import { useRouter } from 'next/router';
+
+import { Button, Form } from "@components/Core";
+import { useTranslate } from '@hooks';
 
 interface SubmitProps {
   loading?: boolean;
   error?: boolean;
+  withCancel?: boolean;
 }
 
 export const Submit = (props: SubmitProps) => {
 
+  const router = useRouter();
+  const { t } = useTranslate();
+
   return (
-    <Field kind="group" align="right">
-      <Control>
+    <Form.Group>
+      <Button.Submit
+        type={props.error ? "error" : "primary"}
+        state={props.loading ? "loading" : "active"}>
+        {t('common.submit')}
+      </Button.Submit>
+      {props.withCancel &&
         <Button
-          color={props.error ? "danger" : "light"}
-          state={props.loading ? "loading" : "active"}
-          type="submit">
-          Submit
-      </Button>
-      </Control>
-    </Field>
+          marginX='3'
+          type='link'
+          onClick={() => router.back()}>
+          {t('common.cancel')}
+        </Button>
+      }
+    </Form.Group>
   )
 }

@@ -1,12 +1,12 @@
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import React, { ComponentProps } from "react";
+import React, { ComponentProps } from 'react';
 
-import { DefaultsType } from "../types";
+import classNames from 'classnames/bind';
+import styles from './Form.module.scss';
+
+import { useTranslate } from '../../../hooks';
+import { Hint } from './Hint';
 
 export const InputTypes = {
-  sizes: ["small", "medium", "large"] as const,
-  states: ["focused", "hovered"] as const,
   types: [
     "text",
     "email",
@@ -17,50 +17,56 @@ export const InputTypes = {
     "color",
     "date",
     "time",
+    "file"
   ] as const,
 };
 
+export type YupError = {
+  key: string;
+  values: object;
+}
+
 export type InputProps = {
-  color?: typeof DefaultsType["colors"][number];
-  readOnly?: React.InputHTMLAttributes<HTMLInputElement>["readOnly"];
-  rounded?: boolean;
-  size?: typeof InputTypes["sizes"][number];
-  state?: typeof InputTypes["states"][number];
-  isStatic?: boolean;
   type?: typeof InputTypes["types"][number];
-  className?: string
-} & Omit<ComponentProps<'input'>, 'size'>;
+  inline?: boolean;
+  error?: string | YupError;
+} & Omit<ComponentProps<'input'>, 'className'>;
 
 export const Input: React.FC<InputProps> = props => {
 
-  const { className, color, rounded, size, isStatic, state, readOnly, ...rest } = props;
-  const isReadOnly = readOnly === true || isStatic === true;
+  const {
+    type,
+    inline,
+    error,
+    ...rest
+  } = props;
+
+  const { locale, t } = useTranslate();
 
   return (
-    <input
-      className={classNames(
-        "input", props.className,
-        {
-          [`is-${color}`]: color,
-          "is-rounded": rounded,
-          [`is-${size}`]: size,
-          "is-static": isStatic,
-          [`is-${state}`]: state,
-        },
-      )}
-      readOnly={isReadOnly}
-      {...rest}
-    />
+    <React.Fragment>
+      <input
+        type={type}
+        className={classNames.bind(styles)(
+          'form-input',
+          {
+            'form-inline': inline,
+            'is-error': error
+          }
+        )}
+        {...rest}
+      />
+      {error &&
+        <Hint>
+          {(() => {
+            if (typeof error === 'string')
+              return error
+            else
+              return t(error.key, error.values)
+          })()
+          }
+        </Hint>}
+    </React.Fragment>
+
   );
 }
-
-Input.displayName = "Input";
-Input.propTypes = {
-  color: PropTypes.oneOf(DefaultsType["colors"]),
-  readOnly: PropTypes.bool,
-  rounded: PropTypes.bool,
-  size: PropTypes.oneOf(InputTypes["sizes"]),
-  state: PropTypes.oneOf(InputTypes["states"]),
-  isStatic: PropTypes.bool,
-  type: PropTypes.oneOf(InputTypes["types"]),
-};

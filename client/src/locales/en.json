@@ -1,11 +1,81 @@
 {
   "header": {
-    "title": "My website",
-    "description": "My description"
+    "title": "Arctifode",
+    "description": "A lightweight artifactory. Make continous delivery easier."
   },
   "navbar": {
     "signin": "Sign in",
     "signout": "Sign out",
     "register": "Register"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "artifacts": "Artifacts",
+    "releases": "Releases",
+    "environments": "Environments",
+    "deployments": "Deployments",
+    "tasks": "Tasks",
+    "members": "Members",
+    "settings": "Settings"
+  },
+  "index": {
+    "projects": "Projects",
+    "please_connect": "Please connect",
+    "no_projects": "You have no projects"
+  },
+  "signin": {
+    "title": "Sign in",
+    "description": "Provide your credentials...",
+    "username": "Username",
+    "password": "Password",
+    "remember": "Remember me",
+    "error": "Incorrect username or password"
+  },
+  "register": {
+    "title": "Register",
+    "description": "Fill the following form...",
+    "username": "Username",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "password": "Password",
+    "error": "Username is already taken"
+  },
+  "new_project": {
+    "title": "Create blank project",
+    "project_name": "Project name",
+    "project_description": "Project description",
+    "project_repository": "Code repository",
+    "placeholder_name": "My project",
+    "placeholder_description": "My description"
+  },
+  "artifacts": {
+    "description": "Manage your application's artifacts"
+  },
+  "releases": {
+    "description": "Manage your application's releases"
+  },
+  "environments": {
+    "description": "Manage your application's environments"
+  },
+  "deployments": {
+    "description": "Manage your application's deployments"
+  },
+  "visibility": {
+    "title": "Visibility Level",
+    "private": "Private",
+    "public": "Public"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "success": "You did it!",
+    "error": "An error has occured",
+    "updated": "updated"
+  },
+  "validation": {
+    "default": "this field is invalid",
+    "required": "this field is required",
+    "min": "must be at least %{min} characters",
+    "max": "must be at least %{max} characters"
   }
 }

@@ -3,17 +3,13 @@ import { NextPage } from 'next';
 import Error from 'next/error';
 
 import { InversifyContext, ApplicationBindings } from '../../container';
-import { Locale } from '../I18n';
-import I18nProvider from './I18nProvider';
+import { I18nProvider, I18nProviderProps } from './I18nProvider';
 
-export interface LocaleProps {
-  locale?: Locale
-  phrases?: any
-}
+export type LocaleProps = Partial<I18nProviderProps>;
 
 export const WithLocale = (WrappedPage: NextPage<any>): NextPage<LocaleProps> => props => {
 
-  const { locale, phrases, ...pageProps } = props;
+  const { locale, polyglot, timeAgo, ...pageProps } = props;
   const container = useContext(InversifyContext);
 
   if (!locale) {
@@ -24,8 +20,11 @@ export const WithLocale = (WrappedPage: NextPage<any>): NextPage<LocaleProps> =>
     container.bind(ApplicationBindings.LOCALE).toConstantValue(locale);
 
   return (
-    <I18nProvider locale={locale} phrases={phrases}>
+    <I18nProvider
+      locale={locale}
+      polyglot={polyglot}
+      timeAgo={timeAgo}>
       <WrappedPage {...pageProps} />
-    </I18nProvider>
+    </I18nProvider >
   );
 }
