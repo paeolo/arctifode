@@ -1,24 +1,27 @@
 import React from 'react';
+
 import { Label } from './Label';
+import { WithModifiers } from '../Modifier';
 
 type HeadingProps = {
   children: React.ReactNode;
   className?: string;
   label?: string;
-  inline?: boolean;
 };
 
-const Heading = (Component: React.FC<React.HTMLProps<HTMLHeadingElement>>) => (props: HeadingProps) => {
+const Heading = (Component: React.FC<React.HTMLProps<HTMLHeadingElement>>) =>
+  WithModifiers<HeadingProps>(
+    (props: HeadingProps) => {
 
-  return (
-    <Component
-      className={props.className}
-      style={{ display: props.inline ? "inline" : undefined }}>
-      {props.children}
-      {props.label && <Label label={props.label} />}
-    </Component>
-  );
-}
+      return (
+        <Component
+          className={props.className}>
+          {props.children}
+          {props.label && <Label label={props.label} />}
+        </Component>
+      );
+    }
+  )
 
 export const H1 = Heading(props => <h1 {...props} />);
 export const H2 = Heading(props => <h2 {...props} />);

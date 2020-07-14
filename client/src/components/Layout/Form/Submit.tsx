@@ -18,14 +18,14 @@ export const Submit = (props: SubmitProps) => {
   return (
     <Form.Group>
       <Button.Submit
-        color={props.error ? "error" : "primary"}
+        type={props.error ? "error" : "primary"}
         state={props.loading ? "loading" : "active"}>
         {t('common.submit')}
       </Button.Submit>
       {props.withCancel &&
         <Button
-          marginX="normal"
-          color="link"
+          marginX='3'
+          type='link'
           onClick={() => router.back()}>
           {t('common.cancel')}
         </Button>

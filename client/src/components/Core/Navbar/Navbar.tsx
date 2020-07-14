@@ -9,7 +9,10 @@ import { Brand } from './Brand';
 export const NavbarFC: React.FC = props => {
 
   return (
-    <header className={classNames.bind(styles)('navbar', 'custom')}>
+    <header className={classNames.bind(styles)(
+      'navbar',
+      'navbar-container'
+    )}>
       {props.children}
     </header>
   );

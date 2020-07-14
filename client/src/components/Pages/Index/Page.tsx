@@ -30,7 +30,7 @@ export const IndexPage = (props: IndexPageProps) => {
             <Button.Link
               action
               size="small"
-              position="right">
+              float="right">
               <Icon icon='fas fa-plus' />
             </Button.Link>
           </Link>
@@ -40,8 +40,9 @@ export const IndexPage = (props: IndexPageProps) => {
             action
             state="disabled"
             tooltip={t('index.please_connect')}
+            tooltipPosition='left'
             size="small"
-            position="right">
+            float="right">
             <Icon icon='fas fa-plus' />
           </Button.Link>
         }
@@ -50,7 +51,7 @@ export const IndexPage = (props: IndexPageProps) => {
         {props.projects.length == 0 &&
           <Empty>
             <Empty.Icon>
-              <Icon icon='fas fa-cubes' size='huge' />
+              <Icon icon='fas fa-road' size='huge' />
             </Empty.Icon>
             <Empty.Title>
               {t('index.no_projects')}

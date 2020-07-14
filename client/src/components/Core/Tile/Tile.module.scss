@@ -1,11 +1,4 @@
 @import '../../../assets/sass/variables.scss';
 @import '../../../assets/sass/spectre.css/mixins';
 
-.color-primary {
-  color: $primary-color
-}
-
-
-.color-secondary {
-  color: #8A8A8A
-}
+@import '../../../assets/sass/spectre.css/tiles';

@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './Avatar.module.scss';
+import { WithModifiers } from '../Modifier';
 
 export const AvatarTypes = {
   sizes: ["xs", "sm", "lg", "xl"] as const,
@@ -8,26 +9,27 @@ export const AvatarTypes = {
 };
 
 export type AvatarProps = {
+  className?: string;
   size?: typeof AvatarTypes["sizes"][number];
-  marginRight?: typeof AvatarTypes["spaces"][number];
   label?: string;
 };
 
-export const Avatar: React.FC<AvatarProps> = props => {
+const AvatarFC: React.FC<AvatarProps> = props => {
 
   return (
     <figure
       className={classNames.bind(styles)(
         'avatar',
-        'custom',
+        'avatar-color',
         {
           [`avatar-${props.size}`]: props.size,
-          'mr-2': props.marginRight === "small",
-          'mr-3': props.marginRight === "normal"
-        }
+        },
+        props.className
       )}
       data-initial={props.label}>
       {props.children}
     </figure>
   );
 }
+
+export const Avatar = WithModifiers<AvatarProps>(AvatarFC);

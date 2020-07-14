@@ -21,7 +21,7 @@ export const ListItem = (props: ListItemProps) => {
     <div className={classNames.bind(styles)('list-item')}>
       <Row align="center">
         <Column size="auto">
-          <Avatar label={props.project.name.toUpperCase()[0]} size="lg" marginRight="normal" />
+          <Avatar label={props.project.name.toUpperCase()[0]} size="lg" marginR='3' />
           <Link href={`/projects/${props.project.id}`}>
             <a className={classNames.bind(styles)('text-primary')}>
               {props.project.name}
@@ -29,8 +29,8 @@ export const ListItem = (props: ListItemProps) => {
           </Link>
           <Icon
             icon={getVisibilityIcon(props.project.visibility)}
-            margin="left"
-            color="secondary" />
+            marginL='2'
+            color='gray' />
         </Column>
         <Column size="auto" offset="ml">
           <div className={classNames.bind(styles)('text-secondary')}>

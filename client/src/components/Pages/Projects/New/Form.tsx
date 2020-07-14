@@ -106,14 +106,14 @@ export const NewForm = () => {
           id='visibility'
           value={Visibility.PRIVATE}
           formik={formik}>
-          <Icon icon={getVisibilityIcon(Visibility.PRIVATE)} margin="right" />
+          <Icon icon={getVisibilityIcon(Visibility.PRIVATE)} marginR='2' />
           {t('visibility.private')}
         </Radio>
         <Radio
           id='visibility'
           value={Visibility.PUBLIC}
           formik={formik}>
-          <Icon icon={getVisibilityIcon(Visibility.PUBLIC)} margin="right" />
+          <Icon icon={getVisibilityIcon(Visibility.PUBLIC)} marginR='2' />
           {t('visibility.public')}
         </Radio>
       </Form.Group>

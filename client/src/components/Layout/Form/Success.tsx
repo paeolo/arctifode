@@ -13,7 +13,7 @@ export const Success = (props: SuccessProps) => {
   const { t } = useTranslate();
 
   return (
-    <Toast color="success" setError={props.setSucess}>
+    <Toast type="success" setError={props.setSucess} marginY='3'>
       {(() => {
         if (props.message === undefined)
           return t('common.success');

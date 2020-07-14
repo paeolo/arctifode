@@ -31,7 +31,7 @@ export const Item = (props: ItemProps) => {
           'active': props.active
         }
       )} >
-        <Icon icon={props.icon} margin="right" color="primary" />
+        <Icon icon={props.icon} marginR='2' color='primary' />
         <span>
           {t(getLocaleKey(props.itemKey))}
         </span>

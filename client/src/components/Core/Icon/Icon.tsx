@@ -2,27 +2,24 @@ import React from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './Icon.module.scss';
+import { WithModifiers } from '../Modifier';
 
 export const IconTypes = {
   sizes: ["normal", "medium", "large", "huge"] as const,
-  directions: ["left", "right", "both"] as const,
-  colors: ["primary", "secondary"] as const
 };
 
 export type IconProps = {
+  className?: string;
   size?: typeof IconTypes["sizes"][number];
-  margin?: typeof IconTypes["directions"][number];
-  color?: typeof IconTypes["colors"][number];
   icon?: string;
 };
 
-export const Icon: React.FC<IconProps> = props => {
+const IconFC: React.FC<IconProps> = props => {
 
   const {
+    className,
     size,
-    margin,
     icon,
-    color,
     ...rest
   } = props;
 
@@ -31,11 +28,12 @@ export const Icon: React.FC<IconProps> = props => {
       'fa-2x': props.size === "medium",
       'fa-3x': props.size === "large",
       'fa-4x': props.size === "huge",
-      [`margin-${margin}`]: margin,
-      [`color-${color}`]: props.color
     },
-    icon
+    icon,
+    className
   )}
     {...rest}
   />
 }
+
+export const Icon = WithModifiers<IconProps>(IconFC);

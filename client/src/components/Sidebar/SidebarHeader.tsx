@@ -17,7 +17,7 @@ export const SidebarHeader = (props: SidebarHeaderProps) => {
         'sidebar-item',
       )} >
         <div>
-          <Avatar label={props.label.toUpperCase()[0]} marginRight="small" />
+          <Avatar label={props.label.toUpperCase()[0]} marginR='2' />
         </div>
         <span>
           {props.label}

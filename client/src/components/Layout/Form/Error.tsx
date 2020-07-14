@@ -13,7 +13,7 @@ export const Error = (props: ErrorProps) => {
   const { t } = useTranslate();
 
   return (
-    <Toast color="error" setError={props.setError}>
+    <Toast type='error' setError={props.setError} marginY='3'>
       {(() => {
         if (props.message === undefined)
           return t('common.error');

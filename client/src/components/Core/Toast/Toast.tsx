@@ -4,33 +4,37 @@ import classNames from 'classnames/bind';
 import styles from './Toast.module.scss';
 
 import { Button } from '@components/Core';
+import { WithModifiers } from '../Modifier';
 
 export const ToastTypes = {
-  colors: ["primary", "success", "warning", "error"] as const,
+  types: ["primary", "success", "warning", "error"] as const,
 };
 
 export type ToastProps = {
-  color: typeof ToastTypes["colors"][number];
+  className?: string;
+  type: typeof ToastTypes["types"][number];
   setError: (error: boolean) => void;
 };
 
-export const Toast: React.FC<ToastProps> = props => {
+const ToastFC: React.FC<ToastProps> = props => {
 
   return (
     <div
       className={classNames.bind(styles)(
         'toast',
-        'custom',
         'fade-in',
         {
-          [`toast-${props.color}`]: props.color,
-        }
+          [`toast-${props.type}`]: props.type,
+        },
+        props.className
       )}>
       <Button
         cross
-        position="right"
+        float="right"
         onClick={() => props.setError(false)} />
       {props.children}
     </div>
   );
 }
+
+export const Toast = WithModifiers<ToastProps>(ToastFC);

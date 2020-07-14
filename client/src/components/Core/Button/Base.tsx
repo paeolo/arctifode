@@ -2,72 +2,69 @@ import React from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
+import { WithModifiers, ModifierTypes } from '../Modifier';
 
 export const ButtonBaseTypes = {
   sizes: ["small", "normal", "large"] as const,
   states: ["active", "disabled", "loading"] as const,
-  colors: ["primary", "link", "success", "error"] as const,
-  positions: ["left", "right"] as const,
-  spaces: ["small", "normal"] as const,
+  types: ["primary", "link", "success", "error"] as const,
 };
 
 export type ButtonBaseProps = {
+  className?: string;
   size?: typeof ButtonBaseTypes["sizes"][number];
   state?: typeof ButtonBaseTypes["states"][number];
-  color?: typeof ButtonBaseTypes["colors"][number];
-  position?: typeof ButtonBaseTypes["positions"][number];
-  marginX?: typeof ButtonBaseTypes["spaces"][number];
+  type?: typeof ButtonBaseTypes["types"][number];
   block?: boolean;
   action?: boolean;
   circle?: boolean;
   cross?: boolean;
   tooltip?: string;
+  tooltipPosition?: typeof ModifierTypes["positions"][number];
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   children?: React.ReactNode;
-  className?: string;
 };
 
 export const ButtonBase = <T extends object>(Component: React.FC<any>) =>
-  React.forwardRef((props: ButtonBaseProps & T, ref) => {
+  WithModifiers<ButtonBaseProps & T>(
+    React.forwardRef((props: ButtonBaseProps & T, ref) => {
 
-    const {
-      size,
-      state,
-      color,
-      position,
-      marginX,
-      block,
-      action,
-      circle,
-      cross,
-      tooltip,
-      className,
-      ...rest
-    } = props;
+      const {
+        className,
+        size,
+        state,
+        type,
+        block,
+        action,
+        circle,
+        cross,
+        tooltip,
+        tooltipPosition,
+        ...rest
+      } = props;
 
-    return (
-      <Component
-        className={classNames.bind(styles)(
-          'btn',
-          {
-            [`${state}`]: state,
-            [`btn-${color}`]: color,
-            [`float-${position}`]: position,
-            'btn-block': block,
-            'btn-sm': size === "small",
-            'btn-lg': size === "large",
-            'btn-action': action || circle,
-            's-circle': circle,
-            'btn-clear': cross,
-            'tooltip': tooltip,
-            'tooltip-left': tooltip && position === "right",
-            'tooltip-right': tooltip && position === "left",
-            'mx-1': props.marginX === "small",
-            'mx-3': props.marginX === "normal"
-          },
-          className
-        )}
-        data-tooltip={tooltip}
-        {...rest} />
-    );
-  });
+      return (
+        <Component
+          ref={ref}
+          className={classNames.bind(styles)(
+            'btn',
+            {
+              [`${state}`]: state,
+              [`btn-${type}`]: type,
+              'btn-block': block,
+              'btn-sm': size === "small",
+              'btn-lg': size === "large",
+              'btn-action': action || circle,
+              's-circle': circle,
+              'btn-clear': cross,
+              'tooltip': tooltip,
+              'tooltip-left': tooltip && tooltipPosition === "left",
+              'tooltip-right': tooltip && tooltipPosition === "right",
+            },
+            className
+          )}
+          data-tooltip={tooltip}
+          {...rest} />
+      );
+    })
+  );

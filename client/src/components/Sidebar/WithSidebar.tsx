@@ -32,6 +32,7 @@ export const WithSidebar: React.FC<WithSidebarProps> = props => {
         <Container maxWidth='lg' paddingX='medium'>
           <CanvasHeader
             label={props.label}
+            id={props.id}
             active={props.active}
             store={store} />
           {props.children}
