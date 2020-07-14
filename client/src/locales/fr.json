@@ -42,12 +42,23 @@
   },
   "new_project": {
     "title": "Créer un projet",
-    "description": "Créer un projet pour stocker vos artifacts, les relier à vos environnements, et les déployer, entre autres.",
     "project_name": "Nom du projet",
     "project_description": "Description du projet",
     "project_repository": "Dépôt du code",
     "placeholder_name": "Mon projet",
     "placeholder_description": "Ma description"
+  },
+  "artifacts": {
+    "description": "Gère les artefacts de l'application"
+  },
+  "releases": {
+    "description": "Gère les releases de l'application"
+  },
+  "environments": {
+    "description": "Gère les environnements de l'application"
+  },
+  "deployments": {
+    "description": "Gère les déploiements de l'application"
   },
   "visibility": {
     "title": "Niveau de visibilité",

@@ -15,8 +15,7 @@ export const Toogle = (props: ToogleProps) => {
     <Button.Link
       className={classNames.bind(styles)('off-canvas-toogle')}
       type="link"
-      onClick={() => props.store.setActive(!props.store.active)}
-      action>
+      onClick={() => props.store.setActive(!props.store.active)}>
       <Icon icon='fas fa-bars' />
     </Button.Link>
   );

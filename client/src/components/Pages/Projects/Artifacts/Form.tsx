@@ -62,38 +62,33 @@ export const UploadForm = () => {
   });
 
   return useObserver(() =>
-    <Section
-      title='Title'
-      subtitle='Subtitle'>
-      <Form onSubmit={formik.handleSubmit} >
-        <H4>Title</H4>
-        <Form.Group>
-          <Form.Label id='file'>
-            File
+    <Form onSubmit={formik.handleSubmit} >
+      <Form.Group>
+        <Form.Label id='file'>
+          File
           </Form.Label>
-          <Input
-            id='file'
-            onChange={event =>
-              formik.setFieldValue('file', event.currentTarget.files[0]
-              )}
-            error={formik.errors.file}
-            type="file" />
-        </Form.Group>
-        <Divider />
-        {store.success &&
-          <Success setSucess={success => store.success = success} />
-        }
-        {store.error &&
-          <Error setError={error => store.error = error} />
-        }
-        {store.loading &&
-          <Progress
-            progress={store.progress}
-            onClick={() => store.request.abort()}
-          />
-        }
-        {!store.loading && <Submit />}
-      </Form >
-    </Section >
+        <Input
+          id='file'
+          onChange={event =>
+            formik.setFieldValue('file', event.currentTarget.files[0]
+            )}
+          error={formik.errors.file}
+          type="file" />
+      </Form.Group>
+      <Divider />
+      {store.success &&
+        <Success setSucess={success => store.success = success} />
+      }
+      {store.error &&
+        <Error setError={error => store.error = error} />
+      }
+      {store.loading &&
+        <Progress
+          progress={store.progress}
+          onClick={() => store.request.abort()}
+        />
+      }
+      {!store.loading && <Submit />}
+    </Form >
   );
 }

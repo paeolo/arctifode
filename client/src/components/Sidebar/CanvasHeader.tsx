@@ -23,7 +23,7 @@ export const CanvasHeader = (props: CanvasHeaderProps) => {
   return (
     <div className={classNames.bind(styles)('canvas-header')}>
       <Row align='center'>
-        <Column size='auto'>
+        <Column size='auto' show='lg'>
           <OffCanvas.Toogle store={props.store} />
         </Column>
         <Column size='auto'>
