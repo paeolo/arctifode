@@ -136,7 +136,7 @@ export function queryObject<T extends object>(
   options?: { required: boolean }
 ) {
   const schemaRef = getModelSchemaRef(modelCtor);
-  delete schemaRef.definitions;
+  schemaRef.definitions = {};
   return param({
     name: name,
     in: 'query',

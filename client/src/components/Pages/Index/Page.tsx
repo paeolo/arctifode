@@ -38,7 +38,6 @@ export const IndexPage = (props: IndexPageProps) => {
         {!userStore.isLogged &&
           <Button.Link
             action
-            state="disabled"
             tooltip={t('index.please_connect')}
             tooltipPosition='left'
             size="small"
