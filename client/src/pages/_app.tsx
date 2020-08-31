@@ -3,7 +3,6 @@
 */
 
 import '../assets/sass/main.scss';
-import 'mobx-react-lite/batchingForReactDom';
 
 import ms from 'ms';
 import { OpenAPI, obtain, InfoController } from "@openapi";
