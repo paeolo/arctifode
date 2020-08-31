@@ -57,12 +57,7 @@ const createServer = async (directory, proxyApi, listenOnStart) => {
   server.use(localeMiddleware);
   server.use(removeTrailingSlashes);
   server.get('*', (req, res) => {
-    if (req.cookies['API_URL'] === undefined) {
-      res.cookie('API_URL', process.env.API_URL, {
-        path: "/",
-        maxAge: ms('10m')
-      });
-    };
+    res.cookie('API_URL', process.env.API_URL);
     handler(req, res);
   });
   if (listenOnStart) {
