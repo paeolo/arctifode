@@ -96,7 +96,6 @@ export class UserController {
         throw new HttpErrors.UnprocessableEntity();
 
       const savedUser = await this.users.save(user);
-      delete savedUser.credentials;
       return savedUser;
     }
     catch (error) {

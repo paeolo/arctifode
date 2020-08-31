@@ -2,10 +2,10 @@
 const getType = value => {
   if ('enum' in value && 'title' in value)
     return `enums.${value.title}`
-  else if ('type' in value)
-    return value.type;
   else if ('title' in value)
     return value.title;
+  else if ('type' in value)
+    return value.type;
   else
     return 'any';
 }

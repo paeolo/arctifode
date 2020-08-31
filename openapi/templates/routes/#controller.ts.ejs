@@ -1,9 +1,9 @@
 <%
 const getType = value => {
-  if ('type' in value)
-    return value.type;
-  else if ('title' in value)
+  if ('title' in value)
     return 'schema.' + value.title;
+  else if ('type' in value)
+    return value.type;
   else
     return 'any';
 }
