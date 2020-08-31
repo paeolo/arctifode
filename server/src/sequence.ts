@@ -2,6 +2,7 @@ import { inject } from '@loopback/context';
 import {
   FindRoute,
   InvokeMethod,
+  InvokeMiddleware,
   ParseParams,
   Reject,
   RequestContext,
@@ -24,6 +25,10 @@ import { LoggingBindings, LogFn } from './components/logger';
 const SequenceActions = RestBindings.SequenceActions;
 
 export class MainSequence implements SequenceHandler {
+
+  @inject(SequenceActions.INVOKE_MIDDLEWARE, { optional: true })
+  protected invokeMiddleware: InvokeMiddleware = () => false;
+
   constructor(
     @inject(SequenceActions.FIND_ROUTE) protected findRoute: FindRoute,
     @inject(SequenceActions.PARSE_PARAMS) protected parseParams: ParseParams,
@@ -36,6 +41,8 @@ export class MainSequence implements SequenceHandler {
 
   async handle(context: RequestContext) {
     const { request, response } = context;
+    const finished = await this.invokeMiddleware(context);
+    if (finished) return;
     const time: bigint = process.hrtime.bigint();
     try {
       await executeRequestHandler(context, cookieParser());
