@@ -6,7 +6,7 @@ import {
 } from "typeorm";
 
 import { TokenType } from '../../components/jwt';
-import { User } from './user.entity';
+import { User } from '../../entity';
 
 @Entity()
 export class Token {

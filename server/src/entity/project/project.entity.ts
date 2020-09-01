@@ -11,7 +11,7 @@ import { MinLength } from 'class-validator';
 import { required, enumProperty } from '../../utils';
 
 import { Visibility } from '../enums';
-import { User } from '../user';
+import { User } from '../../entity';
 
 @model()
 @Entity()

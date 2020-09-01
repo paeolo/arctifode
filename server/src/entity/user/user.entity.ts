@@ -13,10 +13,12 @@ import { MinLength } from 'class-validator';
 import { UserRole } from '../../components/jwt';
 import { required, enumProperty } from '../../utils';
 
-import { UserCredentials } from './user-credentials.entity';
-import { UserProfile } from './user-profile.entity';
-import { Token } from './token.entity';
-import { Project } from '../project';
+import {
+  UserCredentials,
+  UserProfile,
+  Token,
+  Project
+} from '../../entity';
 
 @model()
 @Entity()
